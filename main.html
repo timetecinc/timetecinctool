@@ -1,0 +1,66 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Memory Listing Generator</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--<link href="css/poke.css" rel="stylesheet">-->
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="display-3">Memory Listing Generator</h1>
+
+      <form onsubmit="return getInfo()">
+        <div class="form-group">
+          <label for="SKU">Product SKU</label>
+          <input type="text" class="form-control" id="SKU" placeholder="Enter SKU" aria-describedby="skuHelp">
+          <small id="skuHelp" class="form-text text-muted">Please enter a valid SKU number</small>
+        </div>
+        <div id ="DDR">
+          <label class="radio-inline">
+            <input type="radio" name="DDRGroup" id="inlineRadio1" value="DDR2"> DDR2
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="DDRGroup" id="inlineRadio2" value="DDR3" checked="checked"> DDR3
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="DDRGroup" id="inlineRadio3" value="DDR4"> DDR4
+          </label>
+        </div>
+        <br>
+        <div id = "Config">
+          <label class="radio-inline">
+            <input type="radio" name="numGroup" id="128" value="128"> 128
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="numGroup" id="512" value="512" checked="checked"> 512
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="numGroup" id="1024" value="1024"> 1024
+          </label>
+        </div>
+      </form>
+      <br>
+      <button id="submitBtn" class="btn btn-primary" onclick="getInfo()">Submit</button>
+      <div class="error"></div>
+    </div>
+
+    <div id="titleDiv"></div>
+    <div id="bulletDiv"></div>
+    <div id="descripDiv"></div>
+  </div>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script src="scripts/poke.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="scripts/bootstrap.min.js"></script>
+
+</body>
+</html>
+
