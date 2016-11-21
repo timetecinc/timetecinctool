@@ -19,8 +19,13 @@ var PCNum;
 var DIMM;
 var kit=0;
 var number;
+var description="";
 var warranty;
+var compatiBrand="";
+var compatiList="";
 function getInfo(e){
+ compatiBrand="";
+ compatiList="";
  error_check = "Non-ECC";
  signal="Unbuffered";
  voltage = "1.5V";
@@ -215,9 +220,74 @@ if(kit ==1){
 else{
   console.log(brand+" "+capacity*kit+"GB Kit ("+kit+"*"+capacity+"GB) "+speed+"MHz"+" "+ signal +" "+error_check+" "+product_type +" Memory Ram Module Upgrade");
 }
+<!--///////////////////////////////////////////Compatible List& bullet 4/////////////////////////////////////////////////-->
+
+if ($('compaListarea').val() !="") {
+
+  var lines = $('#compaListarea').val().replace(/\n/g,"###").replace(/\s/g,"@@").split('###');
+  //console.log($('#compaListarea').val().replace(/\n/g,"###").replace(/\s/g,"@@"));
+  var temp;
+  var tempOld="";
+  var temp2;
+  var temp2Old="  ";
+  //Get bullet 4
+  for(var k = 0;k < lines.length;k++){    
+    temp= lines[k].split("@@");
+    if(temp[0].toUpperCase() != tempOld.toUpperCase()){
+      tempOld = temp[0];
+      compatiBrand +=temp[0]+", ";
+
+    }
+  }
+
+  //get description
+  for(var i = 0;i < lines.length;i++){
+    if(compatiList.length<= 1500){
+    temp= lines[i].split("@@");
+    console.log(temp);
+    if(temp[0].toUpperCase() != tempOld.toUpperCase()){
+      compatiList = compatiList.slice(0, -2);
+      compatiList+="<br><br>";
+      console.log("temp[0] "+temp[0]);
+      tempOld = temp[0];
+      //compatiBrand +=temp[0]+", ";
+      
+      compatiList +="<b>"+temp[0]+ "</b> - ";
+    }
+
+    for (var j = 1; j< temp.length;j++){
+
+      if(temp[j]!="" ||temp[j]!="-" ){
+
+        if(i>0){
+          temp2Old =lines[i-1].split("@@");
+          if(temp[j]!=temp2Old[j]){
+          
+            compatiList += temp[j]+" ";
+          }
+        }else{
+        if(temp[j]!= "-"){
+          compatiList += temp[j]+" ";
+        }
+      }
+    }
+  }
+  compatiList = compatiList.slice(0, -1);
+  compatiList+="/ ";
+
+}
+
+}
+compatiList = compatiList.slice(0, -2);
+
+
+
+}
+console.log("compatiList "+compatiList);
+
 
 displayInfo();
-
+displaySepc();
 return false;
 
 }
@@ -248,7 +318,7 @@ if (voltage == "1.5V"){
   bullet2 = "JEDEC standard 1.35V (1.28V ~ 1.45V) and 1.5V (1.425V ~ 1.575V) Power Supply • This is a dual voltage piece and can operate at 1.35V or 1.5V";
 }
 
-var bullet3 = "Module Size: "+ capacity+"GB • "+ "Package: "+ kit +"x" +capacity+"GB "
+var bullet3 = "Module Size: "+ capacity+"GB • "+ "Package: "+ kit +"x" +capacity+"GB ";
 if(product_type == "Server"){
   bullet3 += " • A must for Servers, Not for Desktop PCs/Laptop";
 }else if (product_type == "Desktop"){
@@ -259,19 +329,46 @@ if(product_type == "Server"){
   bullet3 += " • For Apple iMac/ Mac mini/ Macbook Pro only";
 }
 
+var bullet4 = "For Selected "+compatiBrand+" and more";
+
 if(warranty =="1year"){
-  var bullet4 = "Guaranteed – 1 year warranty from Purchase Date • Free technical support (support@timetecinc.com) • MON - FRI 9AM-6PM PST";
+  var bullet5 = "Guaranteed – 1 year warranty from Purchase Date • Free technical support (support@timetecinc.com) • MON - FRI 9AM-6PM PST";
 }else if (warranty =="3month"){
 
-  var bullet4 ="Guaranteed – 3 months warranty from Purchase Date • Free technical support (support@timetecinc.com) • MON - FRI 9AM-6PM PST";
+  var bullet5 ="Guaranteed – 3 months warranty from Purchase Date • Free technical support (support@timetecinc.com) • MON - FRI 9AM-6PM PST";
 }else{
-  var bullet4 ="Guaranteed – Lifetime warranty from Purchase Date • Free technical support (support@timetecinc.com) • MON - FRI 9AM-6PM PST";
+  var bullet5 ="Guaranteed – Lifetime warranty from Purchase Date • Free technical support (support@timetecinc.com) • MON - FRI 9AM-6PM PST";
 }
 
-$('#bulletDiv').html("<b>Bullet Points:</b><br><br>" +bullet1+"<br><br>"+bullet2+"<br><br>"+bullet3+"<br><br>"+bullet4+"<br><br>");
+$('#bulletDiv').html("<b>Bullet Points:</b><br><br>" +bullet1+"<br><br>"+bullet2+"<br><br>"+bullet3+"<br><br>"+bullet4+"<br><br>"+bullet5+"<br><br>");
 
 //--------------------Description-------------------------------------------------------------------
+
+description = "<b>Timetec® – Memory of a lifetime</b><br><br><b>Compatible with (But not Limited to):</b><br>"+compatiList+"<br><br><p>*Please click image for more compatible systems model</p><b>Need to know if this part is compatible?</b><br><p>Contact us with manufacturer and model information of your motherboard</p>";
+
+
+$("#descripDiv").html("<b>Description:</b><br><br>"+description+"<br><br><b style='color: red;'>HTML Format</b><br><br>");
+$("#descripTextDiv").text(description);
+}
+
+function displaySepc(){
   
-var description = "<b>&ltb&gtTimetec® – Memory of a lifetime&lt/b&gt</b>&ltbr&gt<br> &ltbr&gt <br><b> &ltb&gt Compatible with (But not Limited to): &lt/b&gt </b>&ltbr&gt<br> <p>&ltp&gt*Please click image for more compatible systems model#&lt/p&gt</p><b>&ltb&gtNeed to know if this part is compatible?&lt/b&gt</b>&ltbr&gt<br><p>&ltp&gtContact us with manufacturer and model information of your motherboard&lt/p&gt</p>";
-$("#descripDiv").html("<b>Description:</b><br><br>"+description);
+  $("#productType-input").val(product_type);
+  $("#cas-input").val(CL);
+  $("#DIMM-input").val(DIMM);
+  $("#error-input").val(error_check);
+  $("#signal-input").val(signal);
+  $("#voltage-input").val(voltage);
+  $("#pin-input").val(pin);
+}
+function modifyInfo(){
+  product_type=$("#productType-input").val();
+  CL=$("#cas-input").val();
+  DIMM=$("#DIMM-input").val();
+  error_check=$("#error-input").val();
+  signal=$("#signal-input").val();
+  voltage=$("#voltage-input").val();
+  pin=$("#pin-input").val();
+  displayInfo();
+return false;
 }
