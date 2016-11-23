@@ -75,7 +75,7 @@ else if( sku[1] == 0 || sku[1] ==1 || sku[1]==3){
   if(sku[1]==3){
     warranty = "3month";
   }
-  DIMM="RDIMM";
+  
 }else if(sku[1]==5){
   product_type = "Desktop";
   DIMM="UDIMM";
@@ -166,8 +166,10 @@ for (var i=6; i< sku.length;i++){
     error_check = "ECC"
     if(sku[i+1]== 'U'){
       signal = "Unbuffered"
+      DIMM="UDIMM"
     }else if (sku[i+1] == 'R'){
       signal = "Registered"
+      DIMM = "RDIMM"
     }
   }
   if (sku[i] == 'L'){
@@ -231,6 +233,7 @@ if ($('compaListarea').val() !="") {
   var temp2;
   var temp2Old="  ";
   //Get bullet 4
+  var brandNum=0;
   for(var k = 0;k < lines.length;k++){    
     temp= lines[k].split("@@");
     if(temp[0].toUpperCase() != tempOld.toUpperCase()){
@@ -241,41 +244,55 @@ if ($('compaListarea').val() !="") {
   }
 
   //get description
+  var tempListLength=0;
   for(var i = 0;i < lines.length;i++){
-    if(compatiList.length<= 1500){
-    temp= lines[i].split("@@");
-    console.log(temp);
-    if(temp[0].toUpperCase() != tempOld.toUpperCase()){
-      compatiList = compatiList.slice(0, -2);
-      compatiList+="<br><br>";
-      console.log("temp[0] "+temp[0]);
-      tempOld = temp[0];
+    if(compatiList.length<= 1600){
+      temp= lines[i].split("@@");
+      //console.log(temp);
+      if(temp[0].toUpperCase() != tempOld.toUpperCase()){
+        tempListLength=0;
+        compatiList = compatiList.slice(0, -2);
+        compatiList+="<br><br>";
+        console.log("temp[0] "+temp[0]);
+        tempOld = temp[0];
       //compatiBrand +=temp[0]+", ";
       
       compatiList +="<b>"+temp[0]+ "</b> - ";
-    }
+      tempListLength+=temp[0].length;
+      brandNum++;
 
+    }
+  if(tempListLength<200){   
     for (var j = 1; j< temp.length;j++){
+ 
+      console.log("tempListLength = "+  tempListLength);
+        if(temp[j]!="" ||temp[j]!="-"  ){
 
-      if(temp[j]!="" ||temp[j]!="-" ){
+          if(i>0){
+            temp2Old =lines[i-1].split("@@");
+            if(temp[j]!=temp2Old[j]){
 
-        if(i>0){
-          temp2Old =lines[i-1].split("@@");
-          if(temp[j]!=temp2Old[j]){
-          
-            compatiList += temp[j]+" ";
+              compatiList += temp[j]+" ";
+              tempListLength+= (temp[j].length+1);
+            }
+          }else{
+            if(temp[j]!= "-"){
+              compatiList += temp[j]+" ";
+              tempListLength+= (temp[j].length+1);
+            }
           }
-        }else{
-        if(temp[j]!= "-"){
-          compatiList += temp[j]+" ";
         }
-      }
-    }
-  }
-  compatiList = compatiList.slice(0, -1);
-  compatiList+="/ ";
 
-}
+       }
+        compatiList = compatiList.slice(0, -1);
+      compatiList+="/ ";
+      }
+   
+  
+    
+    //tempListLength = compatiList.length;
+    
+  }
 
 }
 compatiList = compatiList.slice(0, -2);
@@ -283,6 +300,7 @@ compatiList = compatiList.slice(0, -2);
 
 
 }
+console.log("brandNum: "+ brandNum);
 console.log("compatiList "+compatiList);
 
 
@@ -352,7 +370,7 @@ $("#descripTextDiv").text(description);
 }
 
 function displaySepc(){
-  
+
   $("#productType-input").val(product_type);
   $("#cas-input").val(CL);
   $("#DIMM-input").val(DIMM);
@@ -370,5 +388,5 @@ function modifyInfo(){
   voltage=$("#voltage-input").val();
   pin=$("#pin-input").val();
   displayInfo();
-return false;
+  return false;
 }
