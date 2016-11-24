@@ -239,9 +239,11 @@ if ($('compaListarea').val() !="") {
     if(temp[0].toUpperCase() != tempOld.toUpperCase()){
       tempOld = temp[0];
       compatiBrand +=temp[0]+", ";
-
+      brandNum++;
     }
   }
+
+  var charNum=0;
 
   //get description
   var tempListLength=0;
@@ -252,20 +254,21 @@ if ($('compaListarea').val() !="") {
       if(temp[0].toUpperCase() != tempOld.toUpperCase()){
         tempListLength=0;
         compatiList = compatiList.slice(0, -2);
-        compatiList+="<br><br>";
+        compatiList+="/...<br><br>";
         console.log("temp[0] "+temp[0]);
         tempOld = temp[0];
       //compatiBrand +=temp[0]+", ";
       
       compatiList +="<b>"+temp[0]+ "</b> - ";
       tempListLength+=temp[0].length;
-      brandNum++;
+      
 
     }
-  if(tempListLength<200){   
-    for (var j = 1; j< temp.length;j++){
- 
-      console.log("tempListLength = "+  tempListLength);
+    if(tempListLength<(1600/brandNum)){   
+      console.log("1600/brandNum = " +1600/brandNum);
+      for (var j = 1; j< temp.length;j++){
+
+        //console.log("tempListLength = "+  tempListLength);
         if(temp[j]!="" ||temp[j]!="-"  ){
 
           if(i>0){
@@ -283,19 +286,20 @@ if ($('compaListarea').val() !="") {
           }
         }
 
-       }
-        compatiList = compatiList.slice(0, -1);
-      compatiList+="/ ";
       }
-   
-  
-    
+      compatiList = compatiList.slice(0, -1);
+      compatiList+="/ ";
+    }
+   //compatiList+="/...";
+
+
     //tempListLength = compatiList.length;
     
   }
 
 }
-compatiList = compatiList.slice(0, -2);
+compatiList = compatiList.slice(0, -1);
+compatiList+="...";
 
 
 
@@ -358,8 +362,12 @@ if(warranty =="1year"){
   var bullet5 ="Guaranteed – Lifetime warranty from Purchase Date • Free technical support (support@timetecinc.com) • MON - FRI 9AM-6PM PST";
 }
 
+if(standard =="DDR3"){
 $('#bulletDiv').html("<b>Bullet Points:</b><br><br>" +bullet1+"<br><br>"+bullet2+"<br><br>"+bullet3+"<br><br>"+bullet4+"<br><br>"+bullet5+"<br><br>");
+}else{
 
+  $('#bulletDiv').html("<b>Bullet Points:</b><br><br>" +bullet1+"<br><br>"+bullet3+"<br><br>"+bullet4+"<br><br>"+bullet5+"<br><br>");
+}
 //--------------------Description-------------------------------------------------------------------
 
 description = "<b>Timetec® – Memory of a lifetime</b><br><br><b>Compatible with (But not Limited to):</b><br>"+compatiList+"<br><br><p>*Please click image for more compatible systems model</p><b>Need to know if this part is compatible?</b><br><p>Contact us with manufacturer and model information of your motherboard</p>";
