@@ -242,7 +242,7 @@ if ($('compaListarea').val() !="") {
       brandNum++;
     }
   }
-
+  compatiBrand = compatiBrand.slice(0, -2);
   var charNum=0;
 
   //get description
@@ -352,7 +352,7 @@ if(product_type == "Server"){
   bullet3 += " • For Apple iMac/ Mac mini/ Macbook Pro only";
 }
 
-var bullet4 = "For Selected "+compatiBrand+" and more";
+var bullet4 = "For Selected "+compatiBrand;
 
 if(warranty =="1year"){
   var bullet5 = "Guaranteed – 1 year warranty from Purchase Date • Free technical support (support@timetecinc.com) • MON - FRI 9AM-6PM PST";
