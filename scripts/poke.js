@@ -248,7 +248,7 @@ if ($('compaListarea').val() !="") {
   //get description
   var tempListLength=0;
   for(var i = 0;i < lines.length;i++){
-    if(compatiList.length<= 1600){
+    
       temp= lines[i].split("@@");
       //console.log(temp);
       if(temp[0].toUpperCase() != tempOld.toUpperCase()){
@@ -260,7 +260,7 @@ if ($('compaListarea').val() !="") {
       //compatiBrand +=temp[0]+", ";
       
       compatiList +="<b>"+temp[0]+ "</b> - ";
-      tempListLength+=temp[0].length;
+      tempListLength+=temp[0].length+10;
       
 
     }
@@ -289,13 +289,14 @@ if ($('compaListarea').val() !="") {
       }
       compatiList = compatiList.slice(0, -1);
       compatiList+="/ ";
+      tempListLength+= 2;
     }
    //compatiList+="/...";
 
 
     //tempListLength = compatiList.length;
     
-  }
+  //////if(compatiList.length<= 1900){
 
 }
 compatiList = compatiList.slice(0, -1);
