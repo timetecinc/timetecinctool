@@ -229,18 +229,26 @@ if ($('compaListarea').val() !="") {
   var lines = $('#compaListarea').val().replace(/\n/g,"###").replace(/\s/g,"@@").split('###');
   //console.log($('#compaListarea').val().replace(/\n/g,"###").replace(/\s/g,"@@"));
   var temp;
+  var tempBrand;
+  var tempBrandOld="";
   var tempOld="";
   var temp2;
   var temp2Old="  ";
   //Get bullet 4
   var brandNum=0;
   for(var k = 0;k < lines.length;k++){    
-    temp= lines[k].split("@@");
-    if(temp[0].toUpperCase() != tempOld.toUpperCase()){
-      tempOld = temp[0];
-      compatiBrand +=temp[0]+", ";
-      brandNum++;
-    }
+    tempBrand = lines[k].split("-");
+    tempBrand[0] = tempBrand[0].replace(/@@/g," ");
+    //console.log("tempBrand[0]" + tempBrand[0]);
+    
+        if(tempBrand[0].toUpperCase() != tempBrandOld.toUpperCase()){
+          tempBrandOld = tempBrand[0];
+          compatiBrand +=tempBrand[0]+", ";
+          brandNum++;
+      
+        }
+     
+
   }
   compatiBrand = compatiBrand.slice(0, -2);
   var charNum=0;
@@ -250,16 +258,18 @@ if ($('compaListarea').val() !="") {
   for(var i = 0;i < lines.length;i++){
     
       temp= lines[i].split("@@");
+      tempBrand = lines[i].split("-");
+      tempBrand[0] = tempBrand[0].replace(/@@/g," ");
       //console.log(temp);
-      if(temp[0].toUpperCase() != tempOld.toUpperCase()){
+      if(tempBrand[0].toUpperCase() != tempBrandOld.toUpperCase()){
         tempListLength=0;
         compatiList = compatiList.slice(0, -2);
         compatiList+="/...<br><br>";
         console.log("temp[0] "+temp[0]);
-        tempOld = temp[0];
-      //compatiBrand +=temp[0]+", ";
+        tempBrandOld = tempBrand[0];
+       
       
-      compatiList +="<b>"+temp[0]+ "</b> - ";
+      compatiList +="<b>"+tempBrand[0]+ "</b> - ";
       tempListLength+=temp[0].length+10;
       
 
@@ -363,7 +373,7 @@ if(warranty =="1year"){
   var bullet5 ="Guaranteed – Lifetime warranty from Purchase Date • Free technical support (support@timetecinc.com) • MON - FRI 9AM-6PM PST";
 }
 
-if(standard =="DDR3"){
+if(standard =="DDR3" || standard == "DDR3L"){
 $('#bulletDiv').html("<b>Bullet Points:</b><br><br>" +bullet1+"<br><br>"+bullet2+"<br><br>"+bullet3+"<br><br>"+bullet4+"<br><br>"+bullet5+"<br><br>");
 }else{
 
