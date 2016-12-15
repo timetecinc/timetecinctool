@@ -49,7 +49,7 @@
   console.log("email: " + email);
   console.log(photoUrl);
   console.log(uid);
-  window.location = 'nav.html';
+  window.location = 'data.html';
 
   } else {
     // No user is signed in.
