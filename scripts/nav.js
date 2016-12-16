@@ -1,6 +1,40 @@
+
+
  var dataPageSelec = "nav-item";
  var listingPageSelec = "nav-item";
+
+var name, email, photoUrl, uid;
+
+
+
+
 $(document).ready(function() {
+
+firebase.auth().onAuthStateChanged(function(user) {
+  
+  if (user) {
+    console.log("user logged in ");
+    console.log(user);
+
+  name = user.displayName;
+  email = user.email;
+ 
+  uid = user.uid; 
+
+  console.log("name: " + name);
+  console.log("email: " + email);
+  console.log(uid);
+ // window.location = 'data.html';
+
+  } else {
+    // No user is signed in.
+    console.log("not logged in");
+   window.location = 'index.html';
+  }
+});
+
+
+
  var current_page = location.pathname.split('/').pop();
    if(current_page == 'data.html'){
       dataPageSelec = "nav-item active";
@@ -36,6 +70,13 @@ document.getElementById("navBar").innerHTML =
     +"<li class='nav-item'>"
       +"<a class='nav-link' href='#'>About</a>"
    +"</li>"
+  +" <li class='nav-item dropdown float-xs-right' style='padding-right:100px;'>"
+     +"<a class='nav-link dropdown-toggle' href='http://example.com' id='supportedContentDropdown' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+name+"</a>"
+      +"<div class='dropdown-menu' aria-labelledby='supportedContentDropdown'>"
+       +"<a class='dropdown-item' href='#'>Logout</a>"
+       
+      +"</div>"
+    +"</li>"
   +"</ul>"
 +"</nav>";
 }

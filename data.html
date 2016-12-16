@@ -5,6 +5,17 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+  <script>
+  var config = {
+    apiKey: "AIzaSyCaiqUn1UMOwuHVT01Mw8s-OSQl9QNHgpc",
+    authDomain: "timetec-data.firebaseapp.com",
+    databaseURL: "https://timetec-data.firebaseio.com",
+    storageBucket: "timetec-data.appspot.com",
+    messagingSenderId: "671839024565"
+  };
+  firebase.initializeApp(config);
+
+  </script>
 
 	<title>Return Inbound System</title>
 	
@@ -25,11 +36,20 @@
   <div id="navBar"></div>
 	<div class="container" >
 		<h1>Return Inbound System</h1>
+    <div class="row">
+      <div class="col-md-8">
         <button type="button" class="btn btn-primary" onclick="displayRMATable()">All Received</button>
-        <button type="button" class="btn btn-warning"  onclick="displayUnTestedTable()">Untested <span class="tag tag-pill tag-danger">0</span></button>
-		<button type="button" class="btn btn-success" style="float: right;" data-toggle="modal" data-target=".bd-example-modal-lg">Add Memory</button>
+        <button type="button" class="btn btn-warning"  onclick="displayUnTestedTable()">Unconfirmed <span id="unconfirmedNum" class="tag tag-pill tag-danger"></span></button>
+      </div>
+      <div id="functionDiv"class=".col-md-4">
+		    
         
+    </div>
      <br><br>
+<div id="tableDiv">
+  <table class ="table table-sm table-striped" id="myTable"></table>
+</div>
+
      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="myModal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -41,7 +61,14 @@
       </div>
       <div class="modal-body">
           <form method="get">
+            <div class="form-group row">
+                <label for="example-number-input" class="col-xs-2 col-form-label">ID</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text"  id="IDInput">
+                    </div>
+            </div>
              <div class="form-group row">
+               <label for="example-number-input" class="col-xs-2 col-form-label">SKU</label>
                 <div class="col-xs-12">
                 <div class="input-group">
                     
@@ -58,50 +85,26 @@
         <div class="form-group row">
                 <label for="example-number-input" class="col-xs-2 col-form-label">Received</label>
                     <div class="col-xs-12">
-                        <input class="form-control" type="number"  id="example-number-input">
+                        <input class="form-control" type="number"  id="receivedInput">
                     </div>
         </div>
         <div class="form-group row">
                 <label for="example-number-input" class="col-xs-2 col-form-label">Tested</label>
                     <div class="col-xs-12">
-                        <input class="form-control" type="number"  id="example-number-input">
+                        <input class="form-control" type="number"  id="testedInput">
                     </div>
         </div>
     </form>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary">Save changes</button>
+    <button type="button" class="btn btn-primary" onclick="saveData()">Save changes</button>
 </div>
 </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<table class ="table table-sm table-striped" id="myTable"></table>
 
-<table class="table" id="unTestedTable">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>SKU</th>
-            <th>Received</th>
-            <th>Tested</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">3</th>
-            <td>Clara</td>
-            <td>Ericson</td>
-            <td>@claris</td>
-            <td>
-                <a href="#">Edit</a>&nbsp;&nbsp;
-                <a href="#">Delete</a>
-            </td>
-        </tr>
 
-    </tbody>
-</table>
 </div>
 <script src="scripts/nav.js"></script>
 </body>
