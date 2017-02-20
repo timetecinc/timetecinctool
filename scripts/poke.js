@@ -23,6 +23,7 @@ var description="";
 var warranty;
 var compatiBrand="";
 var compatiList="";
+var appleSearchTerm=[];
 function getInfo(e){
  compatiBrand="";
  compatiList="";
@@ -234,6 +235,8 @@ if ($('compaListarea').val() !="") {
   var tempOld="";
   var temp2;
   var temp2Old="  ";
+  var appleModel=[];
+  var appleCPUModel=[];
   //Get bullet 4
   var brandNum=0;
   for(var k = 0;k < lines.length;k++){    
@@ -253,7 +256,8 @@ if ($('compaListarea').val() !="") {
   compatiBrand = compatiBrand.slice(0, -2);
   var charNum=0;
 
-  //get description
+  //get non apple description
+  if(document.getElementById("appleCheckbox").checked == false){
   var tempListLength=0;
   for(var i = 0;i < lines.length;i++){
     
@@ -312,7 +316,29 @@ if ($('compaListarea').val() !="") {
 compatiList = compatiList.slice(0, -1);
 compatiList+="...";
 
+}else{// **************if apple description is checked
+    lines = $('#compaListarea').val().split('\n');
+    console.log(lines);
+    for(var i = 0;i < lines.length;i++){
+        if(lines[i].includes("Mac") == false && lines[i]!= '\s'){
+          console.log(lines[i]);
+          temp = lines[i].split('(');
+          if(temp.length!=1){
+            compatiList += temp[0]+"(";
 
+            appleSearchTerm.push((temp[1].split(")"))[0]);
+          }
+          if(temp[1] != null){
+          temp2 = temp[1].split(/\s/);
+          compatiList += temp2[1]+")<br>";
+          }
+        }else{
+          compatiList+="<br><b>"+lines[i]+"</b><br>"
+
+        }
+    }
+
+} 
 
 }
 console.log("brandNum: "+ brandNum);
@@ -381,13 +407,16 @@ $('#bulletDiv').html("<b>Bullet Points:</b><br><br>" +bullet1+"<br><br>"+bullet2
 }
 //--------------------Description-------------------------------------------------------------------
 
-description = "<b>Timetec® – Memory of a lifetime</b><br><br><b>Compatible with (But not Limited to):</b><br>"+compatiList+"<br><br><p>*Please click image for more compatible systems model</p><b>Need to know if this part is compatible?</b><br><p>Contact us with manufacturer and model information of your motherboard</p>";
+//if(document.getElementById("appleCheckbox").checked == false){
+    description = "<b>Timetec® – Memory of a lifetime</b><br><br><b>Compatible with (But not Limited to):</b><br>"+compatiList+"<br><br><p>*Please click image for more compatible systems model</p><b>Need to know if this part is compatible?</b><br><p>Contact us with manufacturer and model information of your motherboard</p>";
 
 
-$("#descripDiv").html("<b>Description:</b><br><br>"+description+"<br><br><b style='color: red;'>HTML Format</b><br><br>");
-$("#descripTextDiv").text(description);
-}
-
+    $("#descripDiv").html("<b>Description:</b><br><br>"+description+"<br><br><b style='color: red;'>HTML Format</b><br><br>");
+    
+    $("#descripTextDiv").text(description);
+    $("#searchTermDiv").html("<br><b style='color: red;'>Search Term</b><br><br>"+appleSearchTerm.join());
+  }
+//}
 function displaySepc(){
 
   $("#productType-input").val(product_type);
