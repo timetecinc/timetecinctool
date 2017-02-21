@@ -323,14 +323,19 @@ compatiList+="...";
         if(lines[i].includes("Mac") == false && lines[i]!= '\s'){
           console.log(lines[i]);
           temp = lines[i].split('(');
-          if(temp.length!=1){
-            compatiList += temp[0]+"(";
-
-            appleSearchTerm.push((temp[1].split(")"))[0]);
+          if(temp[0].includes(".") ){
+            compatiList += temp[0];
+            if(temp[1] !=null){
+              appleSearchTerm.push((temp[1].split(")"))[0]);
+            }
           }
           if(temp[1] != null){
           temp2 = temp[1].split(/\s/);
-          compatiList += temp2[1]+")<br>";
+          compatiList +="("+temp2[1]+")<br>";
+          }else{
+            compatiList= compatiList.slice(0,-1);
+            compatiList+="<br>"
+
           }
         }else{
           compatiList+="<br><b>"+lines[i]+"</b><br>"
