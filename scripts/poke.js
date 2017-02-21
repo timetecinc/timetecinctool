@@ -338,7 +338,7 @@ compatiList+="...";
 
           }
         }else{
-          compatiList+="<br><b>"+lines[i]+"</b><br>"
+          compatiList+="<br><br><b>"+lines[i]+"</b><br>"
 
         }
     }
