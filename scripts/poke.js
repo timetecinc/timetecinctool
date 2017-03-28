@@ -24,6 +24,8 @@ var warranty;
 var compatiBrand="";
 var compatiList="";
 var appleSearchTerm=[];
+
+
 function getInfo(e){
  compatiBrand="";
  compatiList="";
@@ -405,15 +407,15 @@ if(warranty =="1year"){
 }
 
 if(standard =="DDR3" || standard == "DDR3L"){
-$('#bulletDiv').html("<b>Bullet Points:</b><br><br>" +bullet1+"<br><br>"+bullet2+"<br><br>"+bullet3+"<br><br>"+bullet4+"<br><br>"+bullet5+"<br><br>");
+$('#bulletDiv').html("<b>Bullet Points:</b><p>" +bullet1+"<p>"+bullet2+"<p>"+bullet3+"<p>"+bullet4+"<p>"+bullet5+"<p>");
 }else{
 
-  $('#bulletDiv').html("<b>Bullet Points:</b><br><br>" +bullet1+"<br><br>"+bullet3+"<br><br>"+bullet4+"<br><br>"+bullet5+"<br><br>");
+  $('#bulletDiv').html("<b>Bullet Points:</b><p>" +bullet1+"<p>"+bullet3+"<p>"+bullet4+"<p>"+bullet5+"<p>");
 }
 //--------------------Description-------------------------------------------------------------------
 
 //if(document.getElementById("appleCheckbox").checked == false){
-    description = "<b>Timetec® – Memory of a lifetime</b><br><br><b>Compatible with (But not Limited to):</b><br>"+compatiList+"<br><br><p>*Please click image for more compatible systems model</p><b>Need to know if this part is compatible?</b><br><p>Contact us with manufacturer and model information of your motherboard</p>";
+    description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><p><p>*Please click image for more compatible systems model</p>"+compatiList+"<p><b>Need to know if this part is compatible?</b><p><p>Contact us with manufacturer and model information of your motherboard</p>";
 
 
     $("#descripDiv").html("<b>Description:</b><br><br>"+description+"<br><br><b style='color: red;'>HTML Format</b><br><br>");
