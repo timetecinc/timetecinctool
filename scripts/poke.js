@@ -159,6 +159,26 @@ else if( sku[1] == 0 || sku[1] ==1 || sku[1]==3){
   speed= 2133;
   PCNum = 17000;
   CL="CL15";
+}else if(sku[4]+sku[5] == 24){
+  speed = 2400;
+  PCNum = 19200;
+  CL="CL17"
+}else if(sku[4]+sku[5] == 26){
+  speed = 2600;
+  PCNum = 20800;
+  CL="CL19"
+}else if(sku[4]+sku[5] == 28){
+  speed = 2800;
+  PCNum = 22400;
+  CL="CL21"
+}else if(sku[4]+sku[5] == 30){
+  speed = 3000;
+  PCNum = 24000;
+  CL="CL23"
+}else if(sku[4]+sku[5] == 32){
+  speed = 3200;
+  PCNum = 25600;
+  CL="CL25"
 }else{
   speed = "Unknow speed";
 } 
@@ -190,7 +210,7 @@ for (var i=6; i< sku.length;i++){
 
       rank = "Dual Rank"
       rankNum = 2;
-    }else  if(skup[i-3] == 4){
+    }else  if(sku[i-3] == 4){
       rank = "Quad Rank";
       rankNum = 4;
 
@@ -280,8 +300,8 @@ if ($('compaListarea').val() !="") {
       
 
     }
-    if(tempListLength<(1600/brandNum)){   
-      console.log("1600/brandNum = " +1600/brandNum);
+    if(tempListLength<(1800/brandNum)){   
+      console.log("1800/brandNum = " +1800/brandNum);
       for (var j = 1; j< temp.length;j++){
 
         //console.log("tempListLength = "+  tempListLength);
@@ -362,10 +382,10 @@ function displayInfo(){
   //--------------------Title-------------------------------------------------------------------
   var title;
   if(kit ==1){
-    title = "Timetec "+brand+" "+capacity+"GB "+standard+" "+speed+"MHz"+" "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+pin+" "+DIMM+" "+product_type+" Memory Ram Module Upgrade";
+    title = "Timetec "+brand+" "+capacity+"GB "+standard+" "+speed+"MHz"+" "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+pin+" "+DIMM+" "+product_type+" Memory Ram Module Upgrade"+"("+capacity+"GB)";
   }
   else{
-    title = "Timetec "+brand+" "+capacity*kit+"GB Kit ("+kit+"*"+capacity+"GB) "+standard+" "+speed+"MHz "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+product_type+" Memory Ram Module Upgrade";
+    title = "Timetec "+brand+" "+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB) "+standard+" "+speed+"MHz "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+product_type+" Memory Ram Module Upgrade"+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB)";
   }
 
 
@@ -373,7 +393,7 @@ function displayInfo(){
 
 
 //--------------------Bullet Point-------------------------------------------------------------------
-var bullet1 = "• "+standard+" • "+speed+"MHz • "+ PC+"-"+PCNum+" • "+pin+" • "+signal+" • "+ error_check+" • " + voltage+" • "+ CL +" • "+ rank+ " • "+rankNum+"Rx"+rank2+" based"+" • "+number+"x"+rank2;
+var bullet1 = standard+" • "+speed+"MHz • "+ PC+"-"+PCNum+" • "+pin+" • "+signal+" • "+ error_check+" • " + voltage+" • "+ CL +" • "+ rank+ " • "+rankNum+"Rx"+rank2+" based"+" • "+number+"x"+rank2;
 var bullet2;
 if (voltage == "1.5V"){
 
@@ -415,7 +435,9 @@ $('#bulletDiv').html("<b>Bullet Points:</b><p>" +bullet1+"<p>"+bullet2+"<p>"+bul
 //--------------------Description-------------------------------------------------------------------
 
 //if(document.getElementById("appleCheckbox").checked == false){
-    description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><p><p>*Please click image for more compatible systems model</p>"+compatiList+"<p><b>Need to know if this part is compatible?</b><p><p>Contact us with manufacturer and model information of your motherboard</p>";
+  
+  description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Please click image for more compatible systems model<p>"+compatiList+"<p><b>Need to know if this part is compatible?</b><br>Contact us with manufacturer and model information of your motherboard</p>";
+
 
 
     $("#descripDiv").html("<b>Description:</b><br><br>"+description+"<br><br><b style='color: red;'>HTML Format</b><br><br>");
