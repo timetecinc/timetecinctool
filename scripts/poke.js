@@ -36,6 +36,7 @@ function getInfo(e){
  voltage = "1.5V";
  standard="DDR3";
  kit=1;
+
  pin = "240 Pin";
  warranty = "life";
  $('.error').html("");
@@ -74,9 +75,11 @@ for (var i=0;i<channelGroup.length;i++) {
 if (standard == "DDR2"){
   voltage = "1.8V";
   PC = "PC2";
+
 }else if (standard == "DDR4"){
   voltage = "1.2V";
   PC = "PC4";
+  pin = "288 Pin"
 }else {
   PC = "PC3";
 }
@@ -307,6 +310,9 @@ for (var i=6; i< sku.length;i++){
 
   if(sku[i]=='S'){
     pin = "204 Pin"
+    if (standard == "DDR4"){
+      pin ="260 Pin";
+    }
   }
 
   
