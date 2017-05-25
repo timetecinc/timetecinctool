@@ -19,11 +19,13 @@ var PCNum;
 var DIMM;
 var kit=0;
 var number;
+var IC;
 var description="";
 var warranty;
 var compatiBrand="";
 var compatiList="";
 var appleSearchTerm=[];
+var country;
 
 
 function getInfo(e){
@@ -53,6 +55,22 @@ for (i=0;i<numGroup.length;i++) {
   }
 }
 
+ var ICGroup = document.getElementsByName('ICGroup');
+
+ for (var i=0;i<ICGroup.length;i++) {
+  if (ICGroup[i].checked) {
+    IC =  ICGroup[i].value;
+  }
+}
+
+ var channelGroup = document.getElementsByName('channelGroup');
+
+ for (var i=0;i<channelGroup.length;i++) {
+  if (channelGroup[i].checked) {
+    country =  channelGroup[i].value;
+    }
+  }
+
 if (standard == "DDR2"){
   voltage = "1.8V";
   PC = "PC2";
@@ -70,8 +88,26 @@ if(sku[0] != 7 ){
  $('.error').html('<p style="color:red;text-align:left;">ERROR: SKU number start with 7</p>');
 }
 else if( sku[1] == 0 || sku[1] ==1 || sku[1]==3){
-
-  product_type = "Server"
+  switch (country){
+    case US:
+      product_type = "Server";
+    break;
+    case UK:
+      product_type = "Server";
+    break;
+    case DE:
+      product_type = "Server";
+    break;
+    case ES:
+      product_type = "Servidor";
+    break;
+    case FR:
+      product_type = "Serveur";
+    break;
+    case IT:
+      product_type = "server";
+    break;
+  }
   if(sku[1]==0){
     warranty = "1year";
   }
@@ -80,10 +116,50 @@ else if( sku[1] == 0 || sku[1] ==1 || sku[1]==3){
   }
   
 }else if(sku[1]==5){
-  product_type = "Desktop";
+    switch (country){
+    case US:
+      product_type = "Desktop";
+    break;
+    case UK:
+      product_type = "Desktop";
+    break;
+    case DE:
+      product_type = "Desktop";
+    break;
+    case ES:
+      product_type = "pc sobremesa";
+    break;
+    case FR:
+      product_type = "Bureau";
+    break;
+    case IT:
+      product_type = "Desktop";
+    break;
+  }
+ 
   DIMM="UDIMM";
 }else if (sku[1]==6){
-  product_type = "Laptop Notebook Computer";
+  switch (country){
+    case US:
+      product_type = "Laptop Notebook Computer";
+    break;
+    case UK:
+      product_type = "Laptop Notebook Computer";
+    break;
+    case DE:
+      product_type = "Laptop / Notizbuch";
+    break;
+    case ES:
+      product_type = "Portatil";
+    break;
+    case FR:
+      product_type = "Ordinateur portable / ordinateur portable";
+    break;
+    case IT:
+      product_type = "computer portatile";
+    break;
+  }
+  
   DIMM ="SODIMM"
 }else if (sku[1]==8){
 
@@ -100,7 +176,7 @@ else if( sku[1] == 0 || sku[1] ==1 || sku[1]==3){
   <!--////////////////////////////////////////////////////////////////////////////////////////////-->
   if (sku[2]+sku[3] == 'TT'){
 
-    brand = "";
+    brand = IC;
   }else if (sku[2+sku[3]== 'DL']){
 
     brand = "Dell";
@@ -381,13 +457,30 @@ return false;
 function displayInfo(){
   //--------------------Title-------------------------------------------------------------------
   var title;
-  if(kit ==1){
-    title = "Timetec "+brand+" "+capacity+"GB "+standard+" "+speed+"MHz"+" "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+pin+" "+DIMM+" "+product_type+" Memory Ram Module Upgrade"+"("+capacity+"GB)";
-  }
-  else{
-    title = "Timetec "+brand+" "+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB) "+standard+" "+speed+"MHz "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+product_type+" Memory Ram Module Upgrade"+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB)";
-  }
+    switch (country){
+    case US:
+    
+    if(kit ==1){
 
+      title = "Timetec "+brand+" "+capacity+"GB "+standard+" "+speed+"MHz"+" "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+pin+" "+DIMM+" "+product_type+" Memory Ram Module Upgrade"+"("+capacity+"GB)";
+    }
+    else{
+     title = "Timetec "+brand+" "+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB) "+standard+" "+speed+"MHz "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+product_type+" Memory Ram Module Upgrade"+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB)";
+    }
+
+    break;
+
+    case UK:
+      if(kit ==1){
+
+        title = "Timetec "+brand+" "+capacity+"GB "+standard+" "+speed+"MHz"+" "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+pin+" "+DIMM+" "+product_type+" Memory Ram Module Upgrade"+"("+capacity+"GB)";
+      }
+      else{
+      title = "Timetec "+brand+" "+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB) "+standard+" "+speed+"MHz "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+product_type+" Memory Ram Module Upgrade"+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB)";
+      }
+      break;
+
+  }
 
   $('#titleDiv').html("<b>Title:</b><br><br>" + title+"<br><br>");
 
