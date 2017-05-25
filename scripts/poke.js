@@ -55,21 +55,21 @@ for (i=0;i<numGroup.length;i++) {
   }
 }
 
- var ICGroup = document.getElementsByName('ICGroup');
+var ICGroup = document.getElementsByName('ICGroup');
 
- for (var i=0;i<ICGroup.length;i++) {
+for (var i=0;i<ICGroup.length;i++) {
   if (ICGroup[i].checked) {
     IC =  ICGroup[i].value;
   }
 }
 
- var channelGroup = document.getElementsByName('channelGroup');
+var channelGroup = document.getElementsByName('channelGroup');
 
- for (var i=0;i<channelGroup.length;i++) {
+for (var i=0;i<channelGroup.length;i++) {
   if (channelGroup[i].checked) {
     country =  channelGroup[i].value;
-    }
   }
+}
 
 if (standard == "DDR2"){
   voltage = "1.8V";
@@ -89,23 +89,23 @@ if(sku[0] != 7 ){
 }
 else if( sku[1] == 0 || sku[1] ==1 || sku[1]==3){
   switch (country){
-    case US:
-      product_type = "Server";
+    case "US":
+    product_type = "Server";
     break;
-    case UK:
-      product_type = "Server";
+    case "UK":
+    product_type = "Server";
     break;
-    case DE:
-      product_type = "Server";
+    case "DE":
+    product_type = "Server";
     break;
-    case ES:
-      product_type = "Servidor";
+    case "ES":
+    product_type = "Servidor";
     break;
-    case FR:
-      product_type = "Serveur";
+    case "FR":
+    product_type = "Serveur";
     break;
-    case IT:
-      product_type = "server";
+    case "IT":
+    product_type = "Server";
     break;
   }
   if(sku[1]==0){
@@ -116,47 +116,47 @@ else if( sku[1] == 0 || sku[1] ==1 || sku[1]==3){
   }
   
 }else if(sku[1]==5){
-    switch (country){
-    case US:
-      product_type = "Desktop";
+  switch (country){
+    case "US":
+    product_type = "Desktop";
     break;
-    case UK:
-      product_type = "Desktop";
+    case "UK":
+    product_type = "Desktop";
     break;
-    case DE:
-      product_type = "Desktop";
+    case "DE":
+    product_type = "Desktop";
     break;
-    case ES:
-      product_type = "pc sobremesa";
+    case "ES":
+    product_type = "Pc sobremesa";
     break;
-    case FR:
-      product_type = "Bureau";
+    case "FR":
+    product_type = "Bureau";
     break;
-    case IT:
-      product_type = "Desktop";
+    case "IT":
+    product_type = "Desktop";
     break;
   }
- 
+
   DIMM="UDIMM";
 }else if (sku[1]==6){
   switch (country){
-    case US:
-      product_type = "Laptop Notebook Computer";
+    case "US":
+    product_type = "Laptop Notebook Computer";
     break;
-    case UK:
-      product_type = "Laptop Notebook Computer";
+    case "UK":
+    product_type = "Laptop Notebook Computer";
     break;
-    case DE:
-      product_type = "Laptop / Notizbuch";
+    case "DE":
+    product_type = "Laptop / Notizbuch";
     break;
-    case ES:
-      product_type = "Portatil";
+    case "ES":
+    product_type = "Portatil";
     break;
-    case FR:
-      product_type = "Ordinateur portable / ordinateur portable";
+    case "FR":
+    product_type = "Ordinateur portable / ordinateur portable";
     break;
-    case IT:
-      product_type = "computer portatile";
+    case "IT":
+    product_type = "Computer portatile";
     break;
   }
   
@@ -342,13 +342,13 @@ if ($('compaListarea').val() !="") {
     tempBrand[0] = tempBrand[0].replace(/@@/g," ");
     //console.log("tempBrand[0]" + tempBrand[0]);
     
-        if(tempBrand[0].toUpperCase() != tempBrandOld.toUpperCase()){
-          tempBrandOld = tempBrand[0];
-          compatiBrand +=tempBrand[0]+", ";
-          brandNum++;
+    if(tempBrand[0].toUpperCase() != tempBrandOld.toUpperCase()){
+      tempBrandOld = tempBrand[0];
+      compatiBrand +=tempBrand[0]+", ";
+      brandNum++;
       
-        }
-     
+    }
+
 
   }
   compatiBrand = compatiBrand.slice(0, -2);
@@ -356,9 +356,9 @@ if ($('compaListarea').val() !="") {
 
   //get non apple description
   if(document.getElementById("appleCheckbox").checked == false){
-  var tempListLength=0;
-  for(var i = 0;i < lines.length;i++){
-    
+    var tempListLength=0;
+    for(var i = 0;i < lines.length;i++){
+
       temp= lines[i].split("@@");
       tempBrand = lines[i].split("-");
       tempBrand[0] = tempBrand[0].replace(/@@/g," ");
@@ -369,16 +369,16 @@ if ($('compaListarea').val() !="") {
         compatiList+="/...<br><br>";
         console.log("temp[0] "+temp[0]);
         tempBrandOld = tempBrand[0];
-       
-      
-      compatiList +="<b>"+tempBrand[0]+ "</b> - ";
-      tempListLength+=temp[0].length+10;
-      
 
-    }
-    if(tempListLength<(1800/brandNum)){   
-      console.log("1800/brandNum = " +1800/brandNum);
-      for (var j = 1; j< temp.length;j++){
+
+        compatiList +="<b>"+tempBrand[0]+ "</b> - ";
+        tempListLength+=temp[0].length+10;
+
+
+      }
+      if(tempListLength<(1800/brandNum)){   
+        console.log("1800/brandNum = " +1800/brandNum);
+        for (var j = 1; j< temp.length;j++){
 
         //console.log("tempListLength = "+  tempListLength);
         if(temp[j]!="" ||temp[j]!="-"  ){
@@ -410,36 +410,36 @@ if ($('compaListarea').val() !="") {
     
   //////if(compatiList.length<= 1900){
 
-}
-compatiList = compatiList.slice(0, -1);
-compatiList+="...";
+  }
+  compatiList = compatiList.slice(0, -1);
+  compatiList+="...";
 
 }else{// **************if apple description is checked
-    lines = $('#compaListarea').val().split('\n');
-    console.log(lines);
-    for(var i = 0;i < lines.length;i++){
-        if(lines[i].includes("Mac") == false && lines[i]!= '\s'){
-          console.log(lines[i]);
-          temp = lines[i].split('(');
-          if(temp[0].includes(".") ){
-            compatiList += temp[0];
-            if(temp[1] !=null){
-              appleSearchTerm.push((temp[1].split(")"))[0]);
-            }
-          }
-          if(temp[1] != null){
-          temp2 = temp[1].split(/\s/);
-          compatiList +="("+temp2[1]+")<br>";
-          }else{
-            compatiList= compatiList.slice(0,-1);
-            compatiList+="<br>"
-
-          }
-        }else{
-          compatiList+="<br><br><b>"+lines[i]+"</b><br>"
-
+  lines = $('#compaListarea').val().split('\n');
+  console.log(lines);
+  for(var i = 0;i < lines.length;i++){
+    if(lines[i].includes("Mac") == false && lines[i]!= '\s'){
+      console.log(lines[i]);
+      temp = lines[i].split('(');
+      if(temp[0].includes(".") ){
+        compatiList += temp[0];
+        if(temp[1] !=null){
+          appleSearchTerm.push((temp[1].split(")"))[0]);
         }
+      }
+      if(temp[1] != null){
+        temp2 = temp[1].split(/\s/);
+        compatiList +="("+temp2[1]+")<br>";
+      }else{
+        compatiList= compatiList.slice(0,-1);
+        compatiList+="<br>"
+
+      }
+    }else{
+      compatiList+="<br><br><b>"+lines[i]+"</b><br>"
+
     }
+  }
 
 } 
 
@@ -457,32 +457,60 @@ return false;
 function displayInfo(){
   //--------------------Title-------------------------------------------------------------------
   var title;
-    switch (country){
-    case US:
-    
-    if(kit ==1){
-
-      title = "Timetec "+brand+" "+capacity+"GB "+standard+" "+speed+"MHz"+" "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+pin+" "+DIMM+" "+product_type+" Memory Ram Module Upgrade"+"("+capacity+"GB)";
-    }
-    else{
-     title = "Timetec "+brand+" "+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB) "+standard+" "+speed+"MHz "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+product_type+" Memory Ram Module Upgrade"+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB)";
-    }
-
+  var RAMTranslate;
+  var ModuleTranslate;
+  var ForTranstlate;
+  var packageTranslate;
+  switch (country){
+    case "US":
+    RAMTranslate = "Memory RAM";
+    ModuleTranslate = "Module Size: ";
+    ForTranstlate = "For ";
+    packageTranslate ="Package: ";
     break;
-
-    case UK:
-      if(kit ==1){
-
-        title = "Timetec "+brand+" "+capacity+"GB "+standard+" "+speed+"MHz"+" "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+pin+" "+DIMM+" "+product_type+" Memory Ram Module Upgrade"+"("+capacity+"GB)";
-      }
-      else{
-      title = "Timetec "+brand+" "+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB) "+standard+" "+speed+"MHz "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+product_type+" Memory Ram Module Upgrade"+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB)";
-      }
-      break;
-
+    case "UK":
+    RAMTranslate = "Memory RAM";
+    ModuleTranslate = "Module Size: ";
+    ForTranstlate = "For ";
+    packageTranslate ="Package: ";
+    break;
+    case "DE":
+    RAMTranslate = "Arbeitsspeicher";
+    ModuleTranslate = "Modulgröße: ";
+    ForTranstlate = "Für ";
+    packageTranslate ="Paket: ";
+    break;
+    case "ES":
+    RAMTranslate = "Memoria principal";
+    ModuleTranslate = "Tamaño del módulo: ";
+    ForTranstlate = "Para ";
+    packageTranslate ="Paquete: ";
+    break;
+    case "FR":
+    RAMTranslate = "Mémoire RAM";
+    ModuleTranslate = "Taille du paquet: ";
+    ForTranstlate = "Pour ";
+    packageTranslate ="Paquet: ";
+    break;
+    case "IT":
+    RAMTranslate = "Memorie";
+    ModuleTranslate = "Dimensione del modulo: ";
+    ForTranstlate = "Per ";
+    packageTranslate ="Pacchetto: ";
+    break;
   }
 
-  $('#titleDiv').html("<b>Title:</b><br><br>" + title+"<br><br>");
+  if(kit ==1){
+
+    title = "Timetec "+brand+" "+capacity+"GB "+standard+" "+speed+"MHz"+" "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+pin+" "+DIMM+" "+product_type+" "+RAMTranslate+" Module Upgrade"+"("+capacity+"GB)";
+  }
+  else{
+   title = "Timetec "+brand+" "+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB) "+standard+" "+speed+"MHz "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+product_type+" "+RAMTranslate+" Module Upgrade"+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB)";
+ }
+
+
+
+ $('#titleDiv').html("<b>Title:</b><br><br>" + title+"<br><br>");
 
 
 //--------------------Bullet Point-------------------------------------------------------------------
@@ -497,30 +525,54 @@ if (voltage == "1.5V"){
   bullet2 = "JEDEC standard 1.35V (1.28V ~ 1.45V) and 1.5V (1.425V ~ 1.575V) Power Supply • This is a dual voltage piece and can operate at 1.35V or 1.5V";
 }
 
-var bullet3 = "Module Size: "+ capacity+"GB • "+ "Package: "+ kit +"x" +capacity+"GB ";
-if(product_type == "Server"){
-  bullet3 += " • A must for Servers, Not for Desktop PCs/Laptop";
-}else if (product_type == "Desktop"){
-  bullet3 += " • For Desktop Computer,  Not for Laptop";
-}else if(product_type == "Laptop Notebook Computer"){
-  bullet3 += " • For Laptop/Notebook,  Not for Desktop";
+var bullet3 = ModuleTranslate+ capacity+"GB • "+ packageTranslate+ kit +"x" +capacity+"GB ";
+console.log("product_type: " + product_type);
+if(product_type == "Server"||"Servidor"||"Serveur"){
+  bullet3 += " • A must "+ForTranstlate+ product_type+", Not "+ForTranstlate +getTranslated(country,"Desktop")+"/"+getTranslated(country,"Laptop");
+}else if (product_type == "Desktop"||"Pc sobremesa"||"Bureau"){
+  bullet3 += " • "+ForTranstlate+ getTranslated(country,"Desktop")+",  Not "+ForTranstlate+getTranslated(country,"Laptop");
+}else if(product_type == "Laptop Notebook Computer"||"Laptop / Notizbuch"||"Portatil"||"Ordinateur portable / ordinateur portable"||"Computer portatile"){
+  bullet3 += " • "+ForTranstlate+ getTranslated(country,"Laptop")+",  Not"+ ForTranstlate+getTranslated(country,"Desktop");
 }else if (product_type == "Apple"){
-  bullet3 += " • For Apple iMac/ Mac mini/ Macbook Pro only";
+  bullet3 += " • "+ForTranstlate+ "Apple iMac/ Mac mini/ Macbook Pro only";
 }
 
-var bullet4 = "For Selected "+compatiBrand;
+var bullet4 = ForTranstlate+ "Selected "+compatiBrand;
+var bullet5;
 
-if(warranty =="1year"){
-  var bullet5 = "Guaranteed – 1 year warranty from Purchase Date • Free technical support (support@timetecinc.com) • MON - FRI 9AM-6PM PST";
-}else if (warranty =="3month"){
+switch (country){
+  case "US":
+  if(warranty =="1year"){
+   bullet5 = "Guaranteed – 1 year warranty from Purchase Date • Free technical support (support@timetecinc.com) • MON - FRI 9AM-6PM PST";
+ }else if (warranty =="3month"){
 
-  var bullet5 ="Guaranteed – 3 months warranty from Purchase Date • Free technical support (support@timetecinc.com) • MON - FRI 9AM-6PM PST";
-}else{
-  var bullet5 ="Guaranteed – Lifetime warranty from Purchase Date • Free technical support (support@timetecinc.com) • MON - FRI 9AM-6PM PST";
+  bullet5 ="Guaranteed – 3 months warranty from Purchase Date • Free technical support (support@timetecinc.com) • MON - FRI 9AM-6PM PST";
+} else{
+  bullet5 ="Guaranteed – Lifetime warranty from Purchase Date • Free technical support (support@timetecinc.com) • MON - FRI 9AM-6PM PST";
 }
+break;
+case "UK":
+bullet5 = "Guaranteed – Lifetime warranty from Purchase Date • Free technical support (sell@timetecinc.com)";
+break;
+case "DE":
+bullet5 = "Garantiert - Lifetime Garantie ab Kaufdatum • Kostenlose technische Unterstützung  (sell@timetecinc.com)";
+break;
+case "ES":
+bullet5 = "Garantizado - Garantía de por vida desde la fecha de compra • Soporte técnico gratuito (sell@timetecinc.com)";
+break;
+case "FR":
+bullet5 = "Garanti - Garantie à vie à partir de la date d'achat • Assistance technique gratuite (sell@timetecinc.com)";
+break;
+case "IT":
+bullet5 = "Garantita - Garanzia a vita dalla data di acquisto • Supporto tecnico gratuito (sell@timetecinc.com)";
+break;
+}
+
+
+
 
 if(standard =="DDR3" || standard == "DDR3L"){
-$('#bulletDiv').html("<b>Bullet Points:</b><p>" +bullet1+"<p>"+bullet2+"<p>"+bullet3+"<p>"+bullet4+"<p>"+bullet5+"<p>");
+  $('#bulletDiv').html("<b>Bullet Points:</b><p>" +bullet1+"<p>"+bullet2+"<p>"+bullet3+"<p>"+bullet4+"<p>"+bullet5+"<p>");
 }else{
 
   $('#bulletDiv').html("<b>Bullet Points:</b><p>" +bullet1+"<p>"+bullet3+"<p>"+bullet4+"<p>"+bullet5+"<p>");
@@ -528,16 +580,36 @@ $('#bulletDiv').html("<b>Bullet Points:</b><p>" +bullet1+"<p>"+bullet2+"<p>"+bul
 //--------------------Description-------------------------------------------------------------------
 
 //if(document.getElementById("appleCheckbox").checked == false){
-  
-  description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Please click image for more compatible systems model<p>"+compatiList+"<p><b>Need to know if this part is compatible?</b><br>Contact us with manufacturer and model information of your motherboard</p>";
-
-
-
-    $("#descripDiv").html("<b>Description:</b><br><br>"+description+"<br><br><b style='color: red;'>HTML Format</b><br><br>");
-    
-    $("#descripTextDiv").text(description);
-    $("#searchTermDiv").html("<br><b style='color: red;'>Search Term</b><br><br>"+appleSearchTerm.join());
+  switch (country){
+  case "US":
+     description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Please click image for more compatible systems model<p>"+compatiList+"<p><b>Need to know if this part is compatible?</b><br>Contact us with manufacturer and model information of your motherboard</p>";
+  break;
+  case "UK":
+   description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Please click image for more compatible systems model<p>"+compatiList+"<p><b>Need to know if this part is compatible?</b><br>Contact us with manufacturer and model information of your motherboard</p>";
+  break;
+  case "DE":
+   description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Bitte klicken Sie auf das Bild für kompatibleres Systemmodell<p>"+compatiList+"<p><b>Muss wissen, ob dieser Teil kompatibel ist?</b><br>Kontaktieren Sie uns mit Hersteller- und Modellinformationen Ihres Motherboards</p>";
+  break;
+  case "ES":
+   description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Haga clic en la imagen para ver un modelo de sistema más compatible<p>"+compatiList+"<p><b>Vous devez savoir si cette partie est compatible?</b><br>Contactez-nous avec l'information du fabricant et du modèle de votre carte mère</p>";
+  break;
+  case "FR":
+   description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Cliquez sur l'image pour un modèle de système plus compatible<p>"+compatiList+"<p><b>¿Necesita saber si esta parte es compatible?</b><br>Contáctenos con información del fabricante y del modelo de su placa base</p>";
+  break;
+  case "IT":
+   description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Clicca sull'immagine per un modello di sistema più compatibile<p>"+compatiList+"<p><b>Hai bisogno di sapere se questa parte è compatibile?</b><br>Contattaci con il produttore e le informazioni di modello della tua scheda madre</p>";
+  break;
   }
+
+ 
+
+
+
+  $("#descripDiv").html("<b>Description:</b><br><br>"+description+"<br><br><b style='color: red;'>HTML Format</b><br><br>");
+
+  $("#descripTextDiv").text(description);
+  $("#searchTermDiv").html("<br><b style='color: red;'>Search Term</b><br><br>"+appleSearchTerm.join());
+}
 //}
 function displaySepc(){
 
@@ -559,4 +631,74 @@ function modifyInfo(){
   pin=$("#pin-input").val();
   displayInfo();
   return false;
+}
+function getTranslated (countries, PCModel){
+
+  switch (countries){
+    case "US":
+    return PCModel;
+    break;
+    case "UK":
+    return PCModel;
+
+    break;
+    case "DE":
+
+    if (PCModel =="Server"){
+      return "Server";
+    }
+    if (PCModel == "Desktop"){
+      return "Desktop";
+    }
+    if (PCModel == "Laptop"){
+      return "Laptop / Notizbuch";
+
+    }
+
+    break;
+    case "ES":
+
+    if (PCModel =="Server"){
+      return "Servidor";
+    }
+    if (PCModel == "Desktop"){
+      return "Pc sobremesa";
+    }
+    if (PCModel == "Laptop"){
+      return "Portatil";
+
+    }
+
+    break;
+    case "FR":
+    
+    if (PCModel =="Server"){
+      return "Serveur";
+    }
+    if (PCModel == "Desktop"){
+      return "Bureau";
+    }
+    if (PCModel == "Laptop"){
+      return "Ordinateur portable / ordinateur portable";
+
+    }    
+
+    break;
+
+    case "IT":
+    if (PCModel =="Server"){
+      return "Server";
+    }
+    if (PCModel == "Desktop"){
+      return "Desktop";
+    }
+    if (PCModel == "Laptop"){
+      return "Computer Portatile";
+
+    }    
+
+
+    break;
+  }
+
 }
