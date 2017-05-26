@@ -180,22 +180,22 @@ else if( sku[1] == 0 || sku[1] ==1 || sku[1]==3){
   if (sku[2]+sku[3] == 'TT'){
 
     brand = IC;
-  }else if (sku[2+sku[3]== 'DL']){
+  }else if (sku[2]+sku[3]== 'DL'){
 
     brand = "Dell";
-  }else if (sku[2+sku[3]== 'HP']){
+  }else if (sku[2]+sku[3]== 'HP'){
 
     brand = "HP";
-  }else if (sku[2+sku[3]== 'NY']){
+  }else if (sku[2]+sku[3]== 'NY'){
 
     brand = "Nanya";
-  }else if (sku[2+sku[3]== 'SM']){
+  }else if (sku[2]+sku[3]== 'SM'){
 
     brand = "Samsung";
-  }else if (sku[2+sku[3]== 'TG']){
+  }else if (sku[2]+sku[3]== 'TG'){
 
     brand = "Teamgroup";
-  }else if (sku[2+sku[3]== 'KG']){
+  }else if (sku[2]+sku[3]== 'KG'){
 
     brand = "Kingston";
   }else if( sku[2]+sku[3] == 'HN'){
@@ -217,7 +217,7 @@ else if( sku[1] == 0 || sku[1] ==1 || sku[1]==3){
 
   speed = 1066;
   PCNum = 8500;
-  CL="CL8";
+  CL="CL7";
 }else if (sku[4]+sku[5] == 13){
 
   speed = 1333;
@@ -467,42 +467,50 @@ function displayInfo(){
   var ModuleTranslate;
   var ForTranstlate;
   var packageTranslate;
+  var mustTranslate;
   switch (country){
     case "US":
     RAMTranslate = "Memory RAM";
     ModuleTranslate = "Module Size: ";
     ForTranstlate = "For ";
     packageTranslate ="Package: ";
+    mustTranslate = "must";
     break;
     case "UK":
     RAMTranslate = "Memory RAM";
     ModuleTranslate = "Module Size: ";
     ForTranstlate = "For ";
     packageTranslate ="Package: ";
+    mustTranslate = "must";
     break;
     case "DE":
     RAMTranslate = "Arbeitsspeicher";
     ModuleTranslate = "Modulgröße: ";
     ForTranstlate = "Für ";
     packageTranslate ="Paket: ";
+    mustTranslate = "sollen";
     break;
     case "ES":
     RAMTranslate = "Memoria principal";
     ModuleTranslate = "Tamaño del módulo: ";
     ForTranstlate = "Para ";
     packageTranslate ="Paquete: ";
+
+    mustTranslate = "tener que";
     break;
     case "FR":
     RAMTranslate = "Mémoire RAM";
     ModuleTranslate = "Taille du paquet: ";
     ForTranstlate = "Pour ";
     packageTranslate ="Paquet: ";
+    mustTranslate = "doit";
     break;
     case "IT":
     RAMTranslate = "Memorie";
     ModuleTranslate = "Dimensione del modulo: ";
     ForTranstlate = "Per ";
     packageTranslate ="Pacchetto: ";
+    mustTranslate = "mosto";
     break;
   }
 
@@ -534,7 +542,7 @@ if (voltage == "1.5V"){
 var bullet3 = ModuleTranslate+ capacity+"GB • "+ packageTranslate+ kit +"x" +capacity+"GB ";
 console.log("product_type: " + product_type);
 if(product_type == "Server"||"Servidor"||"Serveur"){
-  bullet3 += " • A must "+ForTranstlate+ product_type+", Not "+ForTranstlate +getTranslated(country,"Desktop")+"/"+getTranslated(country,"Laptop");
+  bullet3 += " • A "+mustTranslate+" "+ForTranstlate+ product_type+", Not "+ForTranstlate +getTranslated(country,"Desktop")+"/"+getTranslated(country,"Laptop");
 }else if (product_type == "Desktop"||"Pc sobremesa"||"Bureau"){
   bullet3 += " • "+ForTranstlate+ getTranslated(country,"Desktop")+",  Not "+ForTranstlate+getTranslated(country,"Laptop");
 }else if(product_type == "Laptop Notebook Computer"||"Laptop / Notizbuch"||"Portatil"||"Ordinateur portable / ordinateur portable"||"Computer portatile"){
