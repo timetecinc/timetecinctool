@@ -516,10 +516,10 @@ function displayInfo(){
 
   if(kit ==1){
 
-    title = "Timetec "+brand+" "+capacity+"GB "+standard+" "+speed+"MHz"+" "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+pin+" "+DIMM+" "+product_type+" "+RAMTranslate+" Module Upgrade"+"("+capacity+"GB)";
+    title = "Timetec "+brand+" "+capacity+"GB "+standard+" "+speed+"MHz"+" "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+pin+" "+DIMM+" "+product_type+" "+RAMTranslate+" Module Upgrade "+"("+capacity+"GB)";
   }
   else{
-   title = "Timetec "+brand+" "+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB) "+standard+" "+speed+"MHz "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+product_type+" "+RAMTranslate+" Module Upgrade"+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB)";
+   title = "Timetec "+brand+" "+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB) "+standard+" "+speed+"MHz "+PC+"-"+PCNum+" "+signal +" "+error_check+" "+voltage+" "+CL+" "+rankNum+"Rx"+rank2+" "+rank+" "+pin+" "+DIMM+" "+product_type+" "+RAMTranslate+" Module Upgrade ("+capacity*kit+"GB Kit ("+kit+"x"+capacity+"GB))";
  }
 
 
@@ -534,19 +534,25 @@ if (voltage == "1.5V"){
 
   bullet2 = "JEDEC standard 1.5V (1.425V ~1.575V) Power Supply"; 
 
-}else{
+}else if (voltage == "1.35V"){
 
   bullet2 = "JEDEC standard 1.35V (1.28V ~ 1.45V) and 1.5V (1.425V ~ 1.575V) Power Supply • This is a dual voltage piece and can operate at 1.35V or 1.5V";
+}else if (voltage == "1.2V"){
+
+  bullet2 ="JEDEC standard 1.2V (1.14V ~ 1.26V)";
 }
 
 var bullet3 = ModuleTranslate+ capacity+"GB • "+ packageTranslate+ kit +"x" +capacity+"GB ";
 console.log("product_type: " + product_type);
-if(product_type == "Server"||"Servidor"||"Serveur"){
+
+if(product_type == "Server"||product_type == "Servidor"||product_type == "Serveur"){
   bullet3 += " • A "+mustTranslate+" "+ForTranstlate+ product_type+", Not "+ForTranstlate +getTranslated(country,"Desktop")+"/"+getTranslated(country,"Laptop");
-}else if (product_type == "Desktop"||"Pc sobremesa"||"Bureau"){
+}else if (product_type == "Desktop"||product_type =="Pc sobremesa"||product_type == "Bureau"){
+  console.log("in Desktop");
   bullet3 += " • "+ForTranstlate+ getTranslated(country,"Desktop")+",  Not "+ForTranstlate+getTranslated(country,"Laptop");
-}else if(product_type == "Laptop Notebook Computer"||"Laptop / Notizbuch"||"Portatil"||"Ordinateur portable / ordinateur portable"||"Computer portatile"){
-  bullet3 += " • "+ForTranstlate+ getTranslated(country,"Laptop")+",  Not"+ ForTranstlate+getTranslated(country,"Desktop");
+}else if(product_type == "Laptop Notebook Computer"||product_type == "Laptop / Notizbuch"||product_type == "Portatil"||product_type == "Ordinateur portable / ordinateur portable"||product_type == "Computer portatile"){
+  console.log("in Laptop");
+  bullet3 += " • "+ForTranstlate+ getTranslated(country,"Laptop")+",  Not "+ ForTranstlate+getTranslated(country,"Desktop");
 }else if (product_type == "Apple"){
   bullet3 += " • "+ForTranstlate+ "Apple iMac/ Mac mini/ Macbook Pro only";
 }
@@ -566,52 +572,49 @@ switch (country){
 }
 break;
 case "UK":
-bullet5 = "Guaranteed – Lifetime warranty from Purchase Date • Free technical support (sell@timetecinc.com)";
+bullet5 = "Guaranteed – Life Time warranty from Purchase Date • website: https://www.timetecinc.com/";
 break;
 case "DE":
-bullet5 = "Garantiert - Lifetime Garantie ab Kaufdatum • Kostenlose technische Unterstützung  (sell@timetecinc.com)";
+bullet5 = "Garantiert - Lifetime Garantie ab Kaufdatum • website: https://www.timetecinc.com/";
 break;
 case "ES":
-bullet5 = "Garantizado - Garantía de por vida desde la fecha de compra • Soporte técnico gratuito (sell@timetecinc.com)";
+bullet5 = "Garantizado - Garantía de por vida desde la fecha de compra • website: https://www.timetecinc.com/";
 break;
 case "FR":
-bullet5 = "Garanti - Garantie à vie à partir de la date d'achat • Assistance technique gratuite (sell@timetecinc.com)";
+bullet5 = "Garanti - Garantie à vie à partir de la date d'achat • website: https://www.timetecinc.com/";
 break;
 case "IT":
-bullet5 = "Garantita - Garanzia a vita dalla data di acquisto • Supporto tecnico gratuito (sell@timetecinc.com)";
+bullet5 = "Garantita - Garanzia a vita dalla data di acquisto • website: https://www.timetecinc.com/";
 break;
 }
 
 
 
 
-if(standard =="DDR3" || standard == "DDR3L"){
-  $('#bulletDiv').html("<b>Bullet Points:</b><p>" +bullet1+"<p>"+bullet2+"<p>"+bullet3+"<p>"+bullet4+"<p>"+bullet5+"<p>");
-}else{
 
-  $('#bulletDiv').html("<b>Bullet Points:</b><p>" +bullet1+"<p>"+bullet3+"<p>"+bullet4+"<p>"+bullet5+"<p>");
-}
+$('#bulletDiv').html("<b>Bullet Points:</b><p>" +bullet1+"<p>"+bullet2+"<p>"+bullet3+"<p>"+bullet4+"<p>"+bullet5+"<p>");
+
 //--------------------Description-------------------------------------------------------------------
 
 //if(document.getElementById("appleCheckbox").checked == false){
   switch (country){
   case "US":
-     description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Please click image for more compatible systems model<p>"+compatiList+"<p><b>Need to know if this part is compatible?</b><br>Contact us with manufacturer and model information of your motherboard</p>";
+     description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Please click image for more compatible systems model<p>"+compatiList+"<p><b>Need to know if this part is compatible?</b><br>Contact us with manufacturer and model information of your motherboard";
   break;
   case "UK":
-   description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Please click image for more compatible systems model<p>"+compatiList+"<p><b>Need to know if this part is compatible?</b><br>Contact us with manufacturer and model information of your motherboard</p>";
+   description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Please click image for more compatible systems model<p>"+compatiList+"<p><b>Need to know if this part is compatible?</b><br>Contact us with manufacturer and model information of your motherboard";
   break;
   case "DE":
-   description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Bitte klicken Sie auf das Bild für kompatibleres Systemmodell<p>"+compatiList+"<p><b>Muss wissen, ob dieser Teil kompatibel ist?</b><br>Kontaktieren Sie uns mit Hersteller- und Modellinformationen Ihres Motherboards</p>";
+   description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Bitte klicken Sie auf das Bild für kompatibleres Systemmodell<p>"+compatiList+"<p><b>Muss wissen, ob dieser Teil kompatibel ist?</b><br>Kontaktieren Sie uns mit Hersteller- und Modellinformationen Ihres Motherboards";
   break;
   case "ES":
-   description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Haga clic en la imagen para ver un modelo de sistema más compatible<p>"+compatiList+"<p><b>Vous devez savoir si cette partie est compatible?</b><br>Contactez-nous avec l'information du fabricant et du modèle de votre carte mère</p>";
+   description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Haga clic en la imagen para ver un modelo de sistema más compatible<p>"+compatiList+"<p><b>Vous devez savoir si cette partie est compatible?</b><br>Contactez-nous avec l'information du fabricant et du modèle de votre carte mère";
   break;
   case "FR":
-   description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Cliquez sur l'image pour un modèle de système plus compatible<p>"+compatiList+"<p><b>¿Necesita saber si esta parte es compatible?</b><br>Contáctenos con información del fabricante y del modelo de su placa base</p>";
+   description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Cliquez sur l'image pour un modèle de système plus compatible<p>"+compatiList+"<p><b>¿Necesita saber si esta parte es compatible?</b><br>Contáctenos con información del fabricante y del modelo de su placa base";
   break;
   case "IT":
-   description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Clicca sull'immagine per un modello di sistema più compatibile<p>"+compatiList+"<p><b>Hai bisogno di sapere se questa parte è compatibile?</b><br>Contattaci con il produttore e le informazioni di modello della tua scheda madre</p>";
+   description = "<b>Timetec® – Memory of a lifetime</b><p><b>Compatible with (But not Limited to):</b><br>*Clicca sull'immagine per un modello di sistema più compatibile<p>"+compatiList+"<p><b>Hai bisogno di sapere se questa parte è compatibile?</b><br>Contattaci con il produttore e le informazioni di modello della tua scheda madre";
   break;
   }
 
@@ -650,9 +653,12 @@ function getTranslated (countries, PCModel){
 
   switch (countries){
     case "US":
+    console.log("US" + PCModel);
     return PCModel;
     break;
+
     case "UK":
+    console.log(PCModel);
     return PCModel;
 
     break;
@@ -704,9 +710,11 @@ function getTranslated (countries, PCModel){
       return "Server";
     }
     if (PCModel == "Desktop"){
+     // console.log(PCModel);
       return "Desktop";
     }
     if (PCModel == "Laptop"){
+      console.log(PCModel);
       return "Computer Portatile";
 
     }    
@@ -714,5 +722,5 @@ function getTranslated (countries, PCModel){
 
     break;
   }
-
+//console.log(PCModel);
 }
