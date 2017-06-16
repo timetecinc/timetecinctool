@@ -572,19 +572,19 @@ switch (country){
 }
 break;
 case "UK":
-bullet5 = "Guaranteed – Life Time warranty from Purchase Date • website: https://www.timetecinc.com/";
+bullet5 = "Guaranteed – Life Time warranty from Purchase Date";
 break;
 case "DE":
-bullet5 = "Garantiert - Lifetime Garantie ab Kaufdatum • website: https://www.timetecinc.com/";
+bullet5 = "Garantiert - Lifetime Garantie ab Kaufdatum";
 break;
 case "ES":
-bullet5 = "Garantizado - Garantía de por vida desde la fecha de compra • website: https://www.timetecinc.com/";
+bullet5 = "Garantizado - Garantía de por vida desde la fecha de compra";
 break;
 case "FR":
-bullet5 = "Garanti - Garantie à vie à partir de la date d'achat • website: https://www.timetecinc.com/";
+bullet5 = "Garanti - Garantie à vie à partir de la date d'achat";
 break;
 case "IT":
-bullet5 = "Garantita - Garanzia a vita dalla data di acquisto • website: https://www.timetecinc.com/";
+bullet5 = "Garantita - Garanzia a vita dalla data di acquisto";
 break;
 }
 
