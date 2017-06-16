@@ -372,7 +372,7 @@ if ($('compaListarea').val() !="") {
       if(tempBrand[0].toUpperCase() != tempBrandOld.toUpperCase()){
         tempListLength=0;
         compatiList = compatiList.slice(0, -2);
-        compatiList+="/...<br><br>";
+        compatiList+="/...<p>";
         console.log("temp[0] "+temp[0]);
         tempBrandOld = tempBrand[0];
 
@@ -539,7 +539,7 @@ if (voltage == "1.5V"){
   bullet2 = "JEDEC standard 1.35V (1.28V ~ 1.45V) and 1.5V (1.425V ~ 1.575V) Power Supply • This is a dual voltage piece and can operate at 1.35V or 1.5V";
 }else if (voltage == "1.2V"){
 
-  bullet2 ="JEDEC standard 1.2V (1.14V ~ 1.26V)";
+  bullet2 ="Power Supply: VDD=1.2V (1.14V to 1.26V) • VDDQ = 1.2V (1.14V to 1.26V)";
 }
 
 var bullet3 = ModuleTranslate+ capacity+"GB • "+ packageTranslate+ kit +"x" +capacity+"GB ";
