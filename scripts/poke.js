@@ -1,4 +1,4 @@
-var sku;
+ var sku;
 var brand;
 var product_type;
 var Manufacturer_part_num;
@@ -156,7 +156,7 @@ else if( sku[1] == 0 || sku[1] ==1 || sku[1]==3){
     product_type = "Portatil";
     break;
     case "FR":
-    product_type = "Ordinateur portable / ordinateur portable";
+    product_type = "Ordinateur portable";
     break;
     case "IT":
     product_type = "Computer portatile";
@@ -550,7 +550,7 @@ if(product_type == "Server"||product_type == "Servidor"||product_type == "Serveu
 }else if (product_type == "Desktop"||product_type =="Pc sobremesa"||product_type == "Bureau"){
   console.log("in Desktop");
   bullet3 += " • "+ForTranstlate+ getTranslated(country,"Desktop")+",  Not "+ForTranstlate+getTranslated(country,"Laptop");
-}else if(product_type == "Laptop Notebook Computer"||product_type == "Laptop / Notizbuch"||product_type == "Portatil"||product_type == "Ordinateur portable / ordinateur portable"||product_type == "Computer portatile"){
+}else if(product_type == "Laptop Notebook Computer"||product_type == "Laptop / Notizbuch"||product_type == "Portatil"||product_type == "Ordinateur portable"||product_type == "Computer portatile"){
   console.log("in Laptop");
   bullet3 += " • "+ForTranstlate+ getTranslated(country,"Laptop")+",  Not "+ ForTranstlate+getTranslated(country,"Desktop");
 }else if (product_type == "Apple"){
@@ -699,7 +699,7 @@ function getTranslated (countries, PCModel){
       return "Bureau";
     }
     if (PCModel == "Laptop"){
-      return "Ordinateur portable / ordinateur portable";
+      return "Ordinateur Portable";
 
     }    
 
