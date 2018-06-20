@@ -243,8 +243,8 @@ else if( sku[1] == 0 || sku[1] ==1 || sku[1]==3){
   PCNum = 19200;
   CL="CL17"
 }else if(sku[4]+sku[5] == 26){
-  speed = 2600;
-  PCNum = 20800;
+  speed = 2666;
+  PCNum = 21300;
   CL="CL19"
 }else if(sku[4]+sku[5] == 28){
   speed = 2800;
