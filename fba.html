@@ -1,0 +1,86 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+  <script>
+  var config = {
+    apiKey: "AIzaSyCaiqUn1UMOwuHVT01Mw8s-OSQl9QNHgpc",
+    authDomain: "timetec-data.firebaseapp.com",
+    databaseURL: "https://timetec-data.firebaseio.com",
+    storageBucket: "timetec-data.appspot.com",
+    messagingSenderId: "671839024565"
+  };
+  firebase.initializeApp(config);
+  </script>
+
+  <title>Memory Listing Generator</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--<link href="css/poke.css" rel="stylesheet">-->
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+  <script src="scripts/fba.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="scripts/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+</head>
+<body>
+  <div id="navBar"></div>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="display-3">FBA Shipping Slip Generator</h1>
+
+      <form onsubmit="return getInfo()">
+        <div class ="row">
+ 
+          <div class="col-xs-12 col-md-8">
+            <div class="form-group">
+              
+              <input type="checkbox" id="canadaCheckbox" name="canada" value="apple"> Canada Shipment<br>
+              <textarea class="form-control" id="dataTextArea" rows="8"></textarea>
+            </div>
+            <br>
+            <br>
+            <button id="submitBtn" type ="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+        <br>
+
+        <div class="error"></div>
+      </div>
+
+    </div>
+    <!--///////////////////////////////////////Result/////////////////////////////////////////////////////////-->
+    <div class="row">
+      <div class="col-xs-12 col-md-8">
+ 
+        <div id="titleDiv"></div>
+      
+        <div id="bulletDiv"></div>
+      
+        <div id="FBApDiv"></div>
+        <div id= "FBATextDiv"></div>
+        <div id="searchTermDiv"></div>
+      </div>
+      <!--///////////////////////////////////Left colunm//////////////////////////////////////////////////////////////-->
+      
+    <br>
+    <br>
+    <br>
+    <div class="jumbotron">
+      <footer>
+        <p>Posted by: Timetec International Corporation</p>
+        <p>Contact information: <a href="mailto:someone@example.com">rayg@ttmemory.com</a>.</p>
+        <p>Powered by: Ruigang Gu</p>
+        <p>Version: 1.20</p>
+      </footer>
+    </div>
+  </div>
+
+<script src="scripts/nav.js"></script>
+</body>
+
+</html>
