@@ -2,7 +2,7 @@
 
  var dataPageSelec = "nav-item";
  var listingPageSelec = "nav-item";
-
+ var fbaPageSelec = "nav-item";
 var name, email, photoUrl, uid;
 
 
@@ -43,8 +43,8 @@ firebase.auth().onAuthStateChanged(function(user) {
        listingPageSelec = "nav-item active";
        
    }
-   else if(current_page == 'createEvent.html'){
-       $(".navbar #createEvent").addClass('active');
+   else if(current_page == 'fba.html'){
+       fbaPageSelec = "nav-item active";
    }else if(current_page == 'myProfile.html'){
        $(".navbar #myProfile").addClass('active');
    }
@@ -64,8 +64,8 @@ document.getElementById("navBar").innerHTML =
     +"<li id='listingPage'class='"+listingPageSelec+"'>"
      + "<a class='nav-link' href='listing.html'>Listing</a>"
     +"</li>"
-    +"<li class='nav-item'>"
-     +"<a class='nav-link' href='#'>Pricing</a>"
+    +"<li id='listingPage'class='"+fbaPageSelec+"'>"
+     +"<a class='nav-link' href='fba.html'>FBA Shipping Slip</a>"
     +"</li>"
     +"<li class='nav-item'>"
       +"<a class='nav-link' href='#'>About</a>"
