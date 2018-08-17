@@ -2,6 +2,9 @@
 
 function getInfo (){
  $( "#myTableBody" ).empty();
+ $( "#mycostTableBody" ).empty();
+ $( "#info" ).empty();
+ $( "#total" ).empty();
  document.getElementById("mainTable").style.visibility = "visible";
  document.getElementById("costTable").style.visibility = "visible";
  document.getElementById("costTableTitle").style.visibility = "visible";
@@ -122,12 +125,12 @@ function getInfo (){
       +costTable[x].typeTotalUnitQTY+'</td><td>'
       +costTable[x].singlePrice+'</td><td>'
       +costTable[x].singleWeight+'</td><td>'
-      +costTable[x].typeTotalUnitQTY * costTable[x].singlePrice+'</td><td>'
-      +costTable[x].typeTotalUnitQTY * costTable[x].singleWeight+'</td><td>');  
+      +(costTable[x].typeTotalUnitQTY * costTable[x].singlePrice).toFixed(2)+'</td><td>'
+      +(costTable[x].typeTotalUnitQTY * costTable[x].singleWeight).toFixed(2)+'</td><td>');  
       totalCost += costTable[x].typeTotalUnitQTY * costTable[x].singlePrice;
       totalWeight += costTable[x].typeTotalUnitQTY * costTable[x].singleWeight;
  }
- $("#total").append("Total Cost: " + totalCost + "  Total Weight: "+totalWeight); 
+ $("#total").append("Total Cost: " + totalCost.toFixed(2) + "  Total Weight: "+totalWeight.toFixed(2)); 
  };
  fr.readAsText(tsvFile);
 
@@ -158,19 +161,7 @@ return false;
 
 
 }
-function addToTable(costTable,Type,singlePrice,singleWeight){
-  for(var i = 0; i < costTable.length; i++){
-    if(costTable[i].Type == Type ){
-      costTable[i].totalPrice +=singlePrice; 
-    }else{
-      var item = {Type:Type,singlePrice:singlePrice,singleWeight:singleWeight,totalPrice:0,totalWeight:0};
-      console.log(item);
-      costTable.push(item);
 
-    }
-  }
-
-}
 
 function getID(item,ramData){
 
