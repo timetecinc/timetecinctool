@@ -55,7 +55,7 @@ function initialNavBar(){
 document.getElementById("navBar").innerHTML =
 "<nav class='navbar navbar-light bg-faded'>"
  +"<a class='navbar-brand' href='#'>"
-   +" <img src='image/ICON.jpg' width='30' height='30' class='d-inline-block align-top' alt=''>"
+   +" <img src='image/ICON.png' width='30' height='30' class='d-inline-block align-top' alt=''>"
    + " Timetec Inc</a>"
  +"<ul class='nav navbar-nav'>"
    + "<li id='dataPage' class='"+dataPageSelec+"'>"
