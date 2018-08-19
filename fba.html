@@ -26,7 +26,10 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="scripts/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
-   <script async defer src="https://apis.google.com/js/api.js"></script>
+   <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
   
 </head>
 <body>
@@ -47,10 +50,11 @@
         <br>
 
         </div>
+        <button id="authorize_button">Authorize</button>
         </form>
         <br>
         <div>
-
+         
         <div class="error"></div>
       </div>
 
