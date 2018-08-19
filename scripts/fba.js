@@ -335,12 +335,14 @@ function initClient() {
 
 function updateSigninStatus(isSignedIn) {
         if (isSignedIn) {
-          authorizeButton.style.display = 'none';
-          signoutButton.style.display = 'block';
+          //authorizeButton.style.display = 'none';
+          //signoutButton.style.display = 'block';
+          console.log("isSignedIn");
           listMajors();
         } else {
-          authorizeButton.style.display = 'block';
-          signoutButton.style.display = 'none';
+          //authorizeButton.style.display = 'block';
+          //signoutButton.style.display = 'none';
+          console.log("isNotSigned")
         }
       }
 function handleAuthClick(event) {
