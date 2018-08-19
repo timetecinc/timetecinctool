@@ -1,6 +1,6 @@
 //console.log("lines[0]");
-var CLIENT_ID = '671839024565-i91in47kkr2aiu5evtujvgaj1dgs7g86.apps.googleusercontent.com';
-var API_KEY = 'AIzaSyCaiqUn1UMOwuHVT01Mw8s-OSQl9QNHgpc';
+var CLIENT_ID = '260203569992-jq6n9t4muslfmlu4rrl7c0olrd7f21u8.apps.googleusercontent.com';
+var API_KEY = 'AIzaSyCid7j8eC8O2_AdrC1S0j1xT31r35lNLAg';
 var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
 
       // Authorization scopes required by the API; multiple scopes can be

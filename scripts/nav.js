@@ -28,7 +28,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
   } else {
     // No user is signed in.
-    console.log("not logged in");
+    console.log("not logged in inNav");
     //window.location = 'index.html';
   }
 });
