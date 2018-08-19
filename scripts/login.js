@@ -19,8 +19,8 @@
 
  	//const email = document.getElementById('inputEmail').value;
  	//const password = document.getElementById('inputPassword').value;
-  const email = "rayg@ttmemory.com";
-  const password = "team1911";
+  const email = 'rayg@ttmemory.com';
+  const password = 'team1911';
  	const promise = auth.signInWithEmailAndPassword(email,password);
  	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
   // Handle Errors here.
@@ -53,7 +53,7 @@
   window.location = 'data.html';
 
   } else {
-    // No user is signed in.
+
     console.log("not logged in");
   }
 });

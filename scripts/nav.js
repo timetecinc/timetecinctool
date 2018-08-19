@@ -29,7 +29,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   } else {
     // No user is signed in.
     console.log("not logged in");
-   window.location = 'index.html';
+    //window.location = 'index.html';
   }
 });
 
