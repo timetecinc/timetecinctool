@@ -17,9 +17,10 @@
  	var name, userEmail, photoUrl, uid;
 
 
- 	const email = document.getElementById('inputEmail').value;
- 	const password = document.getElementById('inputPassword').value;
-
+ 	//const email = document.getElementById('inputEmail').value;
+ 	//const password = document.getElementById('inputPassword').value;
+  const email = "rayg@ttmemory.com";
+  const password = "GGGRRGGG333";
  	const promise = auth.signInWithEmailAndPassword(email,password);
  	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
   // Handle Errors here.
