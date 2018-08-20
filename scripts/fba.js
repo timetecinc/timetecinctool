@@ -352,6 +352,9 @@ function updateSigninStatus(isSignedIn) {
 function handleAuthClick(event) {
   gapi.auth2.getAuthInstance().signIn();
 }
+function handleSignoutClick(event) {
+        gapi.auth2.getAuthInstance().signOut();
+}
 function appendPre(message) {
         var pre = document.getElementById('content');
         var textContent = document.createTextNode(message + '\n');
