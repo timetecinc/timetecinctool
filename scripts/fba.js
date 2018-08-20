@@ -319,8 +319,8 @@ function handleClientLoad() {
 }
 function initClient() {
   var authorizeButton = document.getElementById("authorize_button");
-var signoutButton = document.getElementById("signout_button");
-console.log("authorizeButton" + authorizeButton);
+  var signoutButton = document.getElementById("signout_button");
+  console.log("authorizeButton" + authorizeButton);
         gapi.client.init({
           apiKey: API_KEY,
           clientId: CLIENT_ID,
