@@ -6,8 +6,9 @@ var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
 var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
-var authorizeButton = document.getElementById('authorize_button');
-      var signoutButton = document.getElementById('signout_button');
+
+    // Handler for .ready() called.
+
 
 function getInfo (){
  $( "#myTableBody" ).empty();
@@ -317,6 +318,9 @@ function handleClientLoad() {
         gapi.load('client:auth2', initClient);
 }
 function initClient() {
+  var authorizeButton = document.getElementById("authorize_button");
+var signoutButton = document.getElementById("signout_button");
+console.log("authorizeButton" + authorizeButton);
         gapi.client.init({
           apiKey: API_KEY,
           clientId: CLIENT_ID,
