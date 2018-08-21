@@ -121,56 +121,6 @@ function openModal(row){
 
 }
 
-function displayUnTestedTable(){
-   $("#myTable").empty();
-$("#unTestedTable").hide();
- document.getElementById("myTable").setAttribute("title", "unconfirmedTable");
-var rowNum=1;
-var ref = firebase.database().ref("Memory");
- ref.once("value").then(function(snapshot) {
-   var tr="<thead><th>#</th><th>SKU</th><th>Manufactror No.</th><th>RMA Inventory</th><th>New Received</th><th>Tested</th><th>Action</th></thead><tbody>";
-    $("#myTable").append(tr); 
-
-    snapshot.forEach(function(childSnapShot){
-
-  var obj = childSnapShot;
-
-
-  var id = obj.key;
-  var sku = obj.val()["SKU"];
-  var manuNum= obj.val()["Manu"];
-  var inven = obj.val()["QTY"]; 
-  var rmaInv = obj.val()["RMAInv"];
-  var tested = obj.val()["tested"];
-
-  if(!tested){
-
-    tested = 0;
-  }
-  
-  if(obj.hasChild("RMAReceived")){
-    if(obj.val()["RMAReceived"] !=0 ){
-  $("#SKUList").append("<option value='"+sku+"''>");
-    var td1="<tr><th scope='row'>"+id+"</th>";
-    var td2 = "<td>"+sku+"</td>"+"<td>"+manuNum+"</td>";
-    var td3 = "<td>"+rmaInv+ "</td><td>"+obj.val()["RMAReceived"]+"</td><td>"+tested+"</td>";
-    var td4 = "<td><a id='"+rowNum+"'href='#' onclick='openModal(this.id)'>Edit</a>&nbsp;&nbsp;<a href='#''>Delete</a></td></tr>";
-    rowNum++;
-
-    $("#myTable").append(td1+td2+td3+td4); 
-
-  }
-}
-});
-
-  $("#myTable").append("</tbody>");
-
-});
-
-$('#functionDiv').html("<button type='button' class='btn btn-success' style='float: right;' onclick='confirm()'>Confirm</button>");
-
-}
-
 
 function saveData(){
 
@@ -200,7 +150,6 @@ function saveData(){
    
 
 
-countUnconfirmed();
 }
 
 function confirm(){
@@ -222,30 +171,8 @@ function confirm(){
   var tested = obj.val()["tested"];
   var recveivedNum = obj.val()["RMAReceived"];
 
-  if(!tested){
-
-    tested = 0;
-  }
-  
-  if(obj.hasChild("RMAReceived")){
-    if(obj.val()["RMAReceived"] !=0 ){
-
-        if(tested!=0){
-
-          rmaInv =  +rmaInv+ +tested;
-
-          firebase.database().ref("Memory/"+id).update({
-            RMAReceived: 0,
-            tested:0,
-            RMAInv: rmaInv
-
-          });
-
-        }
 
 
-    }
-  }
 
  });
 
@@ -256,7 +183,7 @@ function confirm(){
 }
 var authorizeButton = document.getElementById("authorize_button");
 var signoutButton = document.getElementById("signout_button");
-
+var spreadsheetTable = [];
 function handleClientLoad() {
         gapi.load('client:auth2', initClient);
 }
@@ -297,29 +224,49 @@ function handleAuthClick(event) {
 function handleSignoutClick(event) {
         gapi.auth2.getAuthInstance().signOut();
 }
-function appendPre(message) {
-        var pre = document.getElementById('content');
-        var textContent = document.createTextNode(message + '\n');
-        pre.appendChild(textContent);
+function appendToTable(row) {
+      if(row[6] != null){
+        spreadsheetTable.push({SKU:row[0],Price:row[4],LocalInv:row[6]});
+      }
 }
 
 function listMajors() {
         gapi.client.sheets.spreadsheets.values.get({
-          spreadsheetId: '1Tz5Scf0dLG1XcozUghbCWfezSxxS7UVwdj5d3BaDYqs',
-          range: 'Master!E2:F',
+          spreadsheetId: '1KTwgpOBnEMFwZeRIa0VhlRhKHwH_PcHGVgK7Ptzy8vg',
+          range: 'Adjustment!B6:H',
         }).then(function(response) {
           var range = response.result;
           if (range.values.length > 0) {
-            appendPre('Name, Major:');
             for (i = 0; i < range.values.length; i++) {
               var row = range.values[i];
               // Print columns A and E, which correspond to indices 0 and 4.
-              appendPre(row[0] + ', ' + row[1]);
+              appendToTable(row);
             }
           } else {
-            appendPre('No data found.');
+            console.log('No data found.');
           }
         }, function(response) {
-          appendPre('Error: ' + response.result.error.message);
+          console.log('Error: ' + response.result.error.message);
         });
+console.log(spreadsheetTable);
+}
+
+function updateData(){
+
+ 
+for(var i = 0; i < spreadsheetTable.length; i++){
+  var memSKU = spreadsheetTable[i].SKU;
+  var newPrice = spreadsheetTable[i].Price;
+  var newInv = spreadsheetTable[i].LocalInv;
+
+   firebase.database().ref("RAM/"+memSKU).update({
+    PriceCND: newPrice,
+    LocalInventory:newInv
+  });
+
+
+   
+   
+}
+
 }
