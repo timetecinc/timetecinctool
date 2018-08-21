@@ -254,11 +254,13 @@ function listMajors() {
           console.log('Error: ' + response.result.error.message);
         });
 console.log(spreadsheetTable);
+console.log(spreadsheetTable.length);
 updateData(spreadsheetTable);
 }
 
 function updateData(spreadsheetTable){
-console.log("spreadsheetTable.length" + spreadsheetTable.length);
+  console.log("spreadsheetTable " + spreadsheetTable);
+console.log("spreadsheetTable.length " + spreadsheetTable.length);
  
 for(var i = 0; i < spreadsheetTable.length; i++){
   var memSKU = spreadsheetTable[i].SKU;
