@@ -1,13 +1,4 @@
-//console.log("lines[0]");
-var CLIENT_ID = '260203569992-jq6n9t4muslfmlu4rrl7c0olrd7f21u8.apps.googleusercontent.com';
-var API_KEY = 'AIzaSyCid7j8eC8O2_AdrC1S0j1xT31r35lNLAg';
-var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
 
-      // Authorization scopes required by the API; multiple scopes can be
-      // included, separated by spaces.
-var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
-
-    // Handler for .ready() called.
 
 
 function getInfo (){
@@ -144,27 +135,7 @@ function getInfo (){
  };
  fr.readAsText(tsvFile);
 
- 
 
-/*var data1 = {"FNSKU":"123"};
-var params = {"values": []};
- $("#mainTable tr").each(function(index, item){
-   var temp = []
-   if(index == 0) {
-      $(item).find('th').each(function(idx, col){
-         temp.push($(col).text());
-      })
-   }
-  $(item).find('td').each(function(idx, col){
-     temp.push($(col).text());
-    })
-  params.values.push(temp);
-})
-console.log(params);*/
-
-
-//create("FBA",1);
-//sendToSheet();
 
 return false;
 
@@ -213,44 +184,6 @@ function getWeight(item){
 
 }
 
-function create(title, callback) {
-  // [START sheets_create]
-  gapi.client.sheets.spreadsheets.create({
-    properties: {
-      title: title
-    }
-  }).then((response) => {
-    // [START_EXCLUDE silent]
-    callback(response);
-    console.log('Spreadsheet ID: ' + response.result.spreadsheetId);
-    // [END_EXCLUDE]
-  });
-  // [END sheets_create]
-}
-
-function sendToSheet(){
-
-console.log("in sendToSheet");
-var values = [
-  [
-    12// Cell values ...
-  ],
-  // Additional rows ...
-];
-
-var body = {
-  values: values
-};
-gapi.client.sheets.spreadsheets.values.update({
-   spreadsheetId: "1QhnVeCLL3GUoAJ2JL8n7nEMCwxFZoW9uRAbi4gY_ATc",
-   range: A1,
-   valueInputOption: valueInputOption,
-   resource: body
-}).then((response) => {
-  var result = response.result;
-  console.log(`${result.updatedCells} cells updated.`);
-});
-}
 
 var ramData ='{"ram":['+
   '{"Timetec_Part": "75TT13NU1R8-4G","ID": "NP10","TYPE": "U DDR3 4G","Price": 20,"Weight": 0.0703},'+
@@ -314,70 +247,3 @@ var ramData ='{"ram":['+
  '{"Timetec_Part": "30TT2535C-480G","ID": "SD05","TYPE": "SSD 480","Price": 81,"Weight": 0.2125}]}';
 
 
-function handleClientLoad() {
-        gapi.load('client:auth2', initClient);
-}
-function initClient() {
-  var authorizeButton = document.getElementById("authorize_button");
-  var signoutButton = document.getElementById("signout_button");
-  console.log("authorizeButton" + authorizeButton);
-        gapi.client.init({
-          apiKey: API_KEY,
-          clientId: CLIENT_ID,
-          discoveryDocs: DISCOVERY_DOCS,
-          scope: SCOPES
-        }).then(function () {
-          // Listen for sign-in state changes.
-          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-          // Handle the initial sign-in state.
-          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-          authorizeButton.onclick = handleAuthClick;
-          signoutButton.onclick = handleSignoutClick;
-        });
-}
-
-function updateSigninStatus(isSignedIn) {
-        if (isSignedIn) {
-          //authorizeButton.style.display = 'none';
-          //signoutButton.style.display = 'block';
-          console.log("isSignedIn");
-          listMajors();
-        } else {
-          //authorizeButton.style.display = 'block';
-          //signoutButton.style.display = 'none';
-          console.log("isNotSigned")
-        }
-      }
-function handleAuthClick(event) {
-  gapi.auth2.getAuthInstance().signIn();
-}
-function handleSignoutClick(event) {
-        gapi.auth2.getAuthInstance().signOut();
-}
-function appendPre(message) {
-        var pre = document.getElementById('content');
-        var textContent = document.createTextNode(message + '\n');
-        pre.appendChild(textContent);
-}
-
-function listMajors() {
-        gapi.client.sheets.spreadsheets.values.get({
-          spreadsheetId: '1Tz5Scf0dLG1XcozUghbCWfezSxxS7UVwdj5d3BaDYqs',
-          range: 'Master!E2:F',
-        }).then(function(response) {
-          var range = response.result;
-          if (range.values.length > 0) {
-            appendPre('Name, Major:');
-            for (i = 0; i < range.values.length; i++) {
-              var row = range.values[i];
-              // Print columns A and E, which correspond to indices 0 and 4.
-              appendPre(row[0] + ', ' + row[1]);
-            }
-          } else {
-            appendPre('No data found.');
-          }
-        }, function(response) {
-          appendPre('Error: ' + response.result.error.message);
-        });
-}

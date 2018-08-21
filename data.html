@@ -21,12 +21,16 @@
 	
 	
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="scripts/RIN.js"></script>
+	<script src="scripts/data.js"></script>
   
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+   <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
@@ -35,17 +39,20 @@
 <body>
   <div id="navBar"></div>
 	<div class="container" >
-		<h1>Return Inbound System</h1>
+		<h1>Memory Data</h1>
     <div class="row">
       <div class="col-md-8">
-        <button type="button" class="btn btn-primary" onclick="displayRMATable()">All Received</button>
-        <button type="button" class="btn btn-warning"  onclick="displayUnTestedTable()">Unconfirmed <span id="unconfirmedNum" class="tag tag-pill tag-danger"></span></button>
+        <button type="button" class="btn btn-primary" onclick="displayTable()">All Memory</button>
+        <button id="authorize_button" class="btn btn-primary" >Update Inventory Data</button>
+        <button id="signout_button" class="btn btn-primary">Sign Out</button>
+       
       </div>
       <div id="functionDiv"class=".col-md-4">
 		    
         
     </div>
      <br><br>
+     <pre id="content"></pre>
 <div id="tableDiv">
   <table class ="table table-sm table-striped" id="myTable"></table>
 </div>
