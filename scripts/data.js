@@ -245,6 +245,17 @@ function listMajors() {
               // Print columns A and E, which correspond to indices 0 and 4.
                 if(row[6] != null){
                     spreadsheetTable.push({SKU:row[0],Price:row[4],LocalInv:row[6]});
+                    firebase.database().ref("RAM/"+row[0]).update({
+                    PriceCND: row[4],
+                    LocalInventory:row[6]
+                  }, function(error) {
+                   if (error) {
+                        console.log("update error "+ error);
+                      } else {
+                        // Data saved successfully!
+                        console.log("+ Data saved successfully");
+                      }
+                    });
                   }
             }
           } else {
