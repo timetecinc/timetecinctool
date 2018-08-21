@@ -213,6 +213,7 @@ function updateSigninStatus(isSignedIn) {
           //signoutButton.style.display = 'block';
           console.log("isSignedIn");
           listMajors();
+          updateData();
         } else {
           //authorizeButton.style.display = 'block';
           //signoutButton.style.display = 'none';
@@ -250,11 +251,11 @@ function listMajors() {
           console.log('Error: ' + response.result.error.message);
         });
 console.log(spreadsheetTable);
-updateData();
+
 }
 
 function updateData(){
-
+console.log("in update data");
  
 for(var i = 0; i < spreadsheetTable.length; i++){
   var memSKU = spreadsheetTable[i].SKU;
