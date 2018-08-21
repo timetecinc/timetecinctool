@@ -25,7 +25,7 @@ var ref = firebase.database().ref("RAM");
   var id = obj.val()["ID"];
   var sku = obj.key;
   var ASIN= obj.val()["ASIN"];
-  var inven = 1; 
+  var inven = obj.val()["LocalInventory"]; 
   var price = obj.val()["PriceCND"]; 
   var weight = obj.val()["WeightLB"]; 
 
