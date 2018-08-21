@@ -269,7 +269,7 @@ for(var i = 0; i < spreadsheetTable.length; i++){
       console.log("update error "+ error);
     } else {
       // Data saved successfully!
-      console.log("update error "+ Data saved successfully!);
+      console.log("+ Data saved successfully");
     }
   });
 
