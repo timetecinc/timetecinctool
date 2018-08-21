@@ -188,7 +188,8 @@ function handleClientLoad() {
         gapi.load('client:auth2', initClient);
 }
 function initClient() {
- 
+  var authorizeButton = document.getElementById("authorize_button");
+  var signoutButton = document.getElementById("signout_button");
   console.log("authorizeButton" + authorizeButton);
         gapi.client.init({
           apiKey: API_KEY,
@@ -249,6 +250,7 @@ function listMajors() {
           console.log('Error: ' + response.result.error.message);
         });
 console.log(spreadsheetTable);
+updateData();
 }
 
 function updateData(){
