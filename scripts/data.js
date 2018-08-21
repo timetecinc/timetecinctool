@@ -255,7 +255,7 @@ console.log(spreadsheetTable);
 }
 
 function updateData(){
-console.log("in update data");
+console.log("spreadsheetTable.length" + spreadsheetTable.length);
  
 for(var i = 0; i < spreadsheetTable.length; i++){
   var memSKU = spreadsheetTable[i].SKU;
