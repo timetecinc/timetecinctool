@@ -1,6 +1,3 @@
-
-
-
 function getInfo (){
  $( "#myTableBody" ).empty();
  $( "#mycostTableBody" ).empty();
@@ -41,6 +38,9 @@ function getInfo (){
   var Type = "";
   var totalPrice =0;
   var costTable = []; 
+
+
+  //=========Star decode file===========================================================
   for (var i = 0; i<lines.length -1; i++){
     //get baic info
     if(i<=7){
@@ -71,7 +71,8 @@ function getInfo (){
     if (singleSKU != nextSKU){
      // dataTable[i][3] = singleSKU;
      item = singleSKU;
-     id = getID(item,ramData);
+     id = getID(singleSKU);
+     
      totalUnitQTY = unitQTY;
      unitQTY = 0;
     }else{
@@ -91,10 +92,10 @@ function getInfo (){
     }else{
       reviewCard = "";
     }
-    Type = getType(singleSKU);
-    console.log(Type);
-    singlePrice = getPrice(singleSKU);
-    singleWeight = getWeight(singleSKU);
+    Type = getType(singleSKU,dataBase);
+    //console.log(Type);
+    singlePrice = getPrice(singleSKU,dataBase);
+    singleWeight = getWeight(singleSKU,dataBase);
     dataTable[i] = {SKU:sku,FNSKU: FNSKU, shipped:shippedQTY,Item:item,QTY:totalUnitQTY,ID:id};
     
     
@@ -144,106 +145,24 @@ return false;
 }
 
 
-function getID(item,ramData){
+function getID(item){
+  console.log("dataBase is [0] Key " + dataBase[item].ID);
+  return dataBase[item].ID;
 
- var ramDataOBJ = JSON.parse(ramData);
- //console.log("ramDataOBJ.ram.length " + ramDataOBJ.ram.length);
- //console.log("ramDataOBJ[0] " + ramDataOBJ.ram[0].Timetec_Part);
- for (var j = 0; j< ramDataOBJ.ram.length; j++){
-   if (ramDataOBJ.ram[j].Timetec_Part == item){
-        return ramDataOBJ.ram[j].ID;
-    }
- }
 }
 
-function getType(item){
+function getType(item,dataBase){
+ 
+ //var ramDataOBJ = JSON.parse(ramData);
 
- var ramDataOBJ = JSON.parse(ramData);
- for (var j = 0; j< ramDataOBJ.ram.length; j++){
-   if (ramDataOBJ.ram[j].Timetec_Part == item){
-        return ramDataOBJ.ram[j].TYPE;
-    }
- }
+  return dataBase[item].Type;
 }
-function getPrice(item){
- var ramDataOBJ = JSON.parse(ramData);
- for (var j = 0; j< ramDataOBJ.ram.length; j++){
-   if (ramDataOBJ.ram[j].Timetec_Part == item){
-        return ramDataOBJ.ram[j].Price;
-    }
- }
-
+function getPrice(item,dataBase){
+ //var ramDataOBJ = JSON.parse(ramData);
+ return dataBase[item].CostUSD;
 }
 function getWeight(item){
- var ramDataOBJ = JSON.parse(ramData);
- for (var j = 0; j< ramDataOBJ.ram.length; j++){
-   if (ramDataOBJ.ram[j].Timetec_Part == item){
-        return ramDataOBJ.ram[j].Weight;
-    }
- }
-
+// var ramDataOBJ = JSON.parse(ramData);
+ return dataBase[item].WeightLB;
 }
-
-
-var ramData ='{"ram":['+
-  '{"Timetec_Part": "75TT13NU1R8-4G","ID": "NP10","TYPE": "U DDR3 4G","Price": 20,"Weight": 0.0703},'+
-  '{"Timetec_Part": "75TT13NU2R8-8G","ID": "NP11","TYPE": "U DDR3 8G","Price": 36,"Weight": 0.0703},'+
-  '{"Timetec_Part": "75TT16NUL1R8-4G","ID": "NP12","TYPE": "U DDR3 4G","Price": 20,"Weight": 0.0703},'+
-  '{"Timetec_Part": "75TT16NUL2R8-8G","ID": "NP13","TYPE": "U DDR3 8G","Price": 36,"Weight": 0.0703},'+
-  '{"Timetec_Part": "75TT18NU1R8-4G","ID": "NP14","TYPE": "U DDR3 4G","Price": 20,"Weight": 0.0703},'+
-  '{"Timetec_Part": "75TT18NU2R8-8G","ID": "NP15","TYPE": "U DDR3 8G","Price": 36,"Weight": 0.0703},'+
-  '{"Timetec_Part": "75TT13NU2R8-4G","ID": "NP16","TYPE": "U DDR3 4G","Price": 20,"Weight": 0.0703},'+
-  '{"Timetec_Part": "75TT16NUL2R8-4G","ID": "NP17","TYPE": "U DDR3 4G","Price": 20,"Weight": 0.0703},'+
- '{"Timetec_Part": "76TT13NUS1R8-4G","ID": "NP21","TYPE": "S DDR3 4G","Price": 20,"Weight": 0.0313},'+
- '{"Timetec_Part": "76TT13NUS2R8-8G","ID": "NP22","TYPE": "S DDR3 8G","Price": 36,"Weight": 0.0313},'+
- '{"Timetec_Part": "76TT16NUSL1R8-4G","ID": "NP23","TYPE": "S DDR3 4G","Price": 20,"Weight": 0.0313},'+
- '{"Timetec_Part": "76TT16NUSL2R8-8G","ID": "NP24","TYPE": "S DDR3 8G","Price": 36,"Weight": 0.0313},'+
- '{"Timetec_Part": "76TT18NUS1R8-4G","ID": "NP25","TYPE": "S DDR3 4G","Price": 20,"Weight": 0.0313},'+
- '{"Timetec_Part": "76TT18NUS2R8-8G","ID": "NP26","TYPE": "S DDR3 8G","Price": 36,"Weight": 0.0313},'+
- '{"Timetec_Part": "76TT13NUS2R8-4G","ID": "NP27","TYPE": "S DDR3 4G","Price": 20,"Weight": 0.0313},'+
- '{"Timetec_Part": "76TT16NUSL2R8-4G","ID": "NP28","TYPE": "S DDR3 4G","Price": 20,"Weight": 0.0313},'+
- '{"Timetec_Part": "78AP10NUS2R8-4G","ID": "NP1","TYPE": "S DDR3 4G","Price": 20,"Weight": 0.0313},'+
- '{"Timetec_Part": "78AP10NUS2R8-8G","ID": "NP2","TYPE": "S DDR3 8G","Price": 36,"Weight": 0.0313},'+
- '{"Timetec_Part": "78AP13NUS1R8-4G","ID": "NP3","TYPE": "S DDR3 4G","Price": 20,"Weight": 0.0313},'+
- '{"Timetec_Part": "78AP13NUS2R8-8G","ID": "NP4","TYPE": "S DDR3 8G","Price": 36,"Weight": 0.0313},'+
- '{"Timetec_Part": "78AP16NUSL1R8-4G","ID": "NP5","TYPE": "S DDR3 4G","Price": 20,"Weight": 0.0313},'+
- '{"Timetec_Part": "78AP16NUSL2R8-8G","ID": "NP6","TYPE": "S DDR3 8G","Price": 36,"Weight": 0.0313},'+
- '{"Timetec_Part": "78AP18NUSL2R8-8G","ID": "NP7","TYPE": "S DDR3 8G","Price": 36,"Weight": 0.0313},'+
- '{"Timetec_Part": "78AP13NUS2R8-4G","ID": "NP8","TYPE": "S DDR3 4G","Price": 20,"Weight": 0.0313},'+
- '{"Timetec_Part": "78AP16NUSL2R8-4G","ID": "NP9","TYPE": "S DDR3 4G","Price": 20,"Weight": 0.0313},'+
- '{"Timetec_Part": "78AP24NUS2R8-8G","ID": "NP51","TYPE": "S DDR4 8G","Price": 64,"Weight": 0.0313},'+
- '{"Timetec_Part": "78AP24NUS1R8-8G","ID": "NP53","TYPE": "S DDR4 8G","Price": 64,"Weight": 0.0313},'+
- '{"Timetec_Part": "78AP24NUS2R8-16G","ID": "NP52","TYPE": "S DDR4 16G","Price": 120,"Weight": 0.0391},'+
- '{"Timetec_Part": "75TT21NU1R8-4G","ID": "NP31","TYPE": "U DDR4 4G","Price": 36,"Weight": 0.0703},'+
- '{"Timetec_Part": "75TT21NU2R8-8G","ID": "NP32","TYPE": "U DDR4 8G","Price": 64,"Weight": 0.0703},'+
- '{"Timetec_Part": "75TT21NU2R8-8G","ID": "NP32.1","TYPE": "U DDR4 8G","Price": 64,"Weight": 0.0703},'+
- '{"Timetec_Part": "75TT21NU2R8-16G","ID": "NP33","TYPE": "U DDR4 16G","Price": 128,"Weight": 0.0793},'+
- '{"Timetec_Part": "75TT21NU1R8-8G","ID": "NP34","YPE": "U DDR4 8G","Price": 64,"Weight": 0.0703},'+
- '{"Timetec_Part": "75TT24NU2R8-8G","ID": "NP35","TYPE": "U DDR4 8G","Price": 64,"Weight": 0.0703},'+
- '{"Timetec_Part": "75TT24NU2R8-16G","ID": "NP36","TYPE": "U DDR4 16G","Price": 128,"Weight": 0.0793},'+
- '{"Timetec_Part": "75TT24NU2R8-16G","ID": "NP36.1","TYPE": "U DDR4 16G","Price": 128,"Weight": 0.0793},'+
- '{"Timetec_Part": "75TT24NU1R8-4G","ID": "NP37","TYPE": "U DDR4 4G","Price": 36,"Weight": 0.0703},'+
- '{"Timetec_Part": "75TT24NU1R8-8G","ID": "NP38","TYPE": "U DDR4 8G","Price": 64,"Weight": 0.0703},'+
- '{"Timetec_Part": "76TT21NUS1R8-4G","ID": "NP41","TYPE": "S DDR4 4G","Price": 36,"Weight": 0.0313},'+
- '{"Timetec_Part": "76TT21NUS2R8-8G","ID": "NP42","TYPE": "S DDR4 8G","Price": 64,"Weight": 0.0313},'+
- '{"Timetec_Part": "76TT21NUS1R8-8G","ID": "NP43","TYPE": "S DDR4 8G","Price": 64,"Weight": 0.0313},'+
- '{"Timetec_Part": "76TT21NUS2R8-16G","ID": "NP44","TYPE": "S DDR4 16G","Price": 120,"Weight": 0.0391},'+
- '{"Timetec_Part": "76TT24NUS1R8-4G","ID": "NP46","TYPE": "S DDR4 4G","Price": 36,"Weight": 0.0313},'+
- '{"Timetec_Part": "76TT24NUS2R8-8G","ID": "NP47","TYPE": "S DDR4 8G","Price": 64,"Weight": 0.0313},'+
- '{"Timetec_Part": "76TT24NUS1R8-8G","ID": "NP48","TYPE": "S DDR4 8G","Price": 64,"Weight": 0.0313},'+
- '{"Timetec_Part": "76TT24NUS2R8-16G","ID": "NP49","TYPE": "S DDR4 16G","Price": 120,"Weight": 0.0391},'+
- '{"Timetec_Part": "75TT26NU1R8-8G","ID": "NP61","TYPE": "U DDR4 8G","Price": 64,"Weight": 0.0703},'+
- '{"Timetec_Part": "75TT26NU2R8-8G","ID": "NP62","TYPE": "U DDR4 8G","Price": 64,"Weight": 0.0703},'+
- '{"Timetec_Part": "75TT26NU2R8-16G","ID": "NP63","TYPE": "U DDR4 16G","Price": 128,"Weight": 0.0793},'+
- '{"Timetec_Part": "76HN21NUS1R8-8G","ID": "HN01","TYPE": "S DDR4 8G","Price": 64,"Weight": 0.0313},'+
- '{"Timetec_Part": "76HN24NUS1R8-8G","ID": "HN02","TYPE": "S DDR4 8G","Price": 64,"Weight": 0.0313},'+
- '{"Timetec_Part": "76HN21NUS2R8-16G","ID": "HN03","TYPE": "S DDR4 16G","Price": 120,"Weight": 0.0391},'+
- '{"Timetec_Part": "75HN24NU1R8-8G","ID": "HN04","TYPE": "U DDR4 4G","Price": 36,"Weight": 0.0703},'+
- '{"Timetec_Part": "76HN26NUS1R16-4G","ID": "HN05","TYPE": "S DDR4 4G","Price": 36,"Weight": 0.0313},'+
- '{"Timetec_Part": "76HN26NUS1R8-8G","ID": "HN06","TYPE": "S DDR4 8G","Price": 64,"Weight": 0.0313},'+
- '{"Timetec_Part": "35MCM6008-480G","ID": "SD01","TYPE": "SSD M2 480","Price": 35,"Weight": 0.05625},'+
- '{"Timetec_Part": "30TT2535C-120G","ID": "SD03","TYPE": "SSD 120","Price": 22.5,"Weight": 0.2125},'+
- '{"Timetec_Part": "30TT2535C-240G","ID": "SD04","TYPE": "SSD 240","Price": 42,"Weight": 0.2125},'+
- '{"Timetec_Part": "30TT2535C-480G","ID": "SD05","TYPE": "SSD 480","Price": 81,"Weight": 0.2125}]}';
-
 

@@ -14,6 +14,19 @@
     messagingSenderId: "671839024565"
   };
   firebase.initializeApp(config);
+
+  var dataBase=[];
+  var ref = firebase.database().ref("RAM");
+  ref.once("value").then(function(snapshot) {
+
+    snapshot.forEach(function(childSnapshot) {
+    var childKey = childSnapshot.key;
+    var childData = childSnapshot.val();
+   // console.log("dataBase childData is (in head) " +  JSON.stringify(childData));
+    dataBase[childKey] = childData;
+  });
+    //console.log("dataBase is (in head) " + dataBase);
+  });
   </script>
 
   <title>Memory Listing Generator</title>
