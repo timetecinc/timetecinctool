@@ -183,7 +183,7 @@ function confirm(){
 }
 var authorizeButton = document.getElementById("authorize_button");
 var signoutButton = document.getElementById("signout_button");
-var spreadsheetTable = [];
+
 function handleClientLoad() {
         gapi.load('client:auth2', initClient);
 }
@@ -213,7 +213,7 @@ function updateSigninStatus(isSignedIn) {
           //signoutButton.style.display = 'block';
           console.log("isSignedIn");
           listMajors();
-          updateData();
+          
         } else {
           //authorizeButton.style.display = 'block';
           //signoutButton.style.display = 'none';
@@ -233,6 +233,7 @@ function appendToTable(row) {
 }
 
 function listMajors() {
+        var spreadsheetTable = [];
         gapi.client.sheets.spreadsheets.values.get({
           spreadsheetId: '1KTwgpOBnEMFwZeRIa0VhlRhKHwH_PcHGVgK7Ptzy8vg',
           range: 'Adjustment!B6:H',
@@ -242,7 +243,9 @@ function listMajors() {
             for (i = 0; i < range.values.length; i++) {
               var row = range.values[i];
               // Print columns A and E, which correspond to indices 0 and 4.
-              appendToTable(row);
+                if(row[6] != null){
+                    spreadsheetTable.push({SKU:row[0],Price:row[4],LocalInv:row[6]});
+                  }
             }
           } else {
             console.log('No data found.');
@@ -251,10 +254,10 @@ function listMajors() {
           console.log('Error: ' + response.result.error.message);
         });
 console.log(spreadsheetTable);
-
+updateData(spreadsheetTable);
 }
 
-function updateData(){
+function updateData(spreadsheetTable){
 console.log("spreadsheetTable.length" + spreadsheetTable.length);
  
 for(var i = 0; i < spreadsheetTable.length; i++){
