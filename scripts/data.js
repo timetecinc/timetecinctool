@@ -260,10 +260,17 @@ for(var i = 0; i < spreadsheetTable.length; i++){
   var memSKU = spreadsheetTable[i].SKU;
   var newPrice = spreadsheetTable[i].Price;
   var newInv = spreadsheetTable[i].LocalInv;
-
+  console.log(spreadsheetTable[i].SKU+ spreadsheetTable[i].Price+spreadsheetTable[i].LocalInv );
    firebase.database().ref("RAM/"+memSKU).update({
     PriceCND: newPrice,
     LocalInventory:newInv
+  }, function(error) {
+    if (error) {
+      console.log("update error "+ error);
+    } else {
+      // Data saved successfully!
+      console.log("update error "+ Data saved successfully!);
+    }
   });
 
 
