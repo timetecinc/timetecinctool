@@ -150,7 +150,7 @@ function getID(item){
   if(dataBase[item]!=null){
     return dataBase[item].ID;
   }else{
-    return ''; 
+    return 'Not Found'; 
   }
 
 }
@@ -163,7 +163,7 @@ function getType(item,dataBase){
     if(dataBase[item]!=null){
     return dataBase[item].Type;
   }else{
-    return ''; 
+    return 'Not Found';
   }
 }
 function getPrice(item,dataBase){
@@ -172,7 +172,7 @@ function getPrice(item,dataBase){
  if(dataBase[item]!=null){
     return dataBase[item].CostUSD;
   }else{
-    return ''; 
+    return 'Not Found';
   }
 }
 function getWeight(item){
@@ -181,7 +181,7 @@ function getWeight(item){
   if(dataBase[item]!=null){
     return dataBase[item].WeightLB;
   }else{
-    return ''; 
+    return 'Not Found'; 
   }
 }
 
