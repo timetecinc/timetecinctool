@@ -146,8 +146,12 @@ return false;
 
 
 function getID(item){
-  console.log("dataBase is [0] Key " + dataBase[item].ID);
-  return dataBase[item].ID;
+  //console.log("dataBase is [0] Key " + dataBase[item].ID);
+  if(dataBase[item]!=null){
+    return dataBase[item].ID;
+  }else{
+    return ''; 
+  }
 
 }
 
@@ -155,14 +159,29 @@ function getType(item,dataBase){
  
  //var ramDataOBJ = JSON.parse(ramData);
 
-  return dataBase[item].Type;
+  //return dataBase[item].Type;
+    if(dataBase[item]!=null){
+    return dataBase[item].Type;
+  }else{
+    return ''; 
+  }
 }
 function getPrice(item,dataBase){
  //var ramDataOBJ = JSON.parse(ramData);
- return dataBase[item].CostUSD;
+ //return dataBase[item].CostUSD;
+ if(dataBase[item]!=null){
+    return dataBase[item].CostUSD;
+  }else{
+    return ''; 
+  }
 }
 function getWeight(item){
 // var ramDataOBJ = JSON.parse(ramData);
- return dataBase[item].WeightLB;
+ //return dataBase[item].WeightLB;
+  if(dataBase[item]!=null){
+    return dataBase[item].WeightLB;
+  }else{
+    return ''; 
+  }
 }
 
