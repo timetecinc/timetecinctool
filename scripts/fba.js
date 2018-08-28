@@ -38,13 +38,18 @@ function getInfo (){
   var Type = "";
   var totalPrice =0;
   var costTable = []; 
-
+  var speetValueTable=[];
+  var shipmentID = lines[0].split('\t')[0];
 
   //=========Star decode file===========================================================
   for (var i = 0; i<lines.length -1; i++){
     //get baic info
     if(i<=7){
+
       $("#info").append(lines[i]+"<br>");
+      var temp = [];
+      temp.push(lines[i]);
+      speetValueTable.push(temp);
     }else if (i>=9){
     // deal with sorting
     var line = lines[i].split('\t');//split tab
@@ -185,3 +190,87 @@ function getWeight(item){
   }
 }
 
+function handleClientLoad() {
+      gapi.load('client:auth2', initClient);
+}
+function initClient() {
+      
+      // TODO: Authorize using one of the following scopes:
+      //   'https://www.googleapis.com/auth/drive'
+      //   'https://www.googleapis.com/auth/drive.file'
+      //   'https://www.googleapis.com/auth/spreadsheets'
+      var SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
+
+      gapi.client.init({
+        'apiKey': API_KEY,
+        'clientId': CLIENT_ID,
+        'scope': SCOPE,
+        'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+      }).then(function() {
+        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
+        updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+      });
+}
+    function updateSignInStatus(isSignedIn) {
+      if (isSignedIn) {
+        makeApiCall();
+      }
+    }
+
+    function handleSignInClick(event) {
+      gapi.auth2.getAuthInstance().signIn();
+    }
+
+    function handleSignOutClick(event) {
+      gapi.auth2.getAuthInstance().signOut();
+    }
+
+    function makeApiCall() {
+      var spreadsheetBody = {
+        // TODO: Add desired properties to the request body.
+        properties:{
+          title:shipmentID + " Shipping Slip"
+        }
+      };
+
+      var request = gapi.client.sheets.spreadsheets.create({}, spreadsheetBody);
+      request.then(function(response) {
+        // TODO: Change code below to process the `response` object:
+        console.log(response.result.spreadsheetId);
+        var sheetID = response.result.spreadsheetId;
+        appendValue(sheetID);
+
+      }, function(reason) {
+        console.error('error: ' + reason.result.error.message);
+      });
+    }
+   function appendValue(sheetID) {
+      var params = {
+        // The ID of the spreadsheet to update.
+        spreadsheetId: 'my-spreadsheet-id',  // TODO: Update placeholder value.
+
+        // The A1 notation of a range to search for a logical table of data.
+        // Values will be appended after the last row of the table.
+        range: 'A:Z',  // TODO: Update placeholder value.
+
+        // How the input data should be interpreted.
+        valueInputOption: 'USER_ENTERD',  // TODO: Update placeholder value.
+
+        // How the input data should be inserted.
+        insertDataOption: 'OVERWRITE',  // TODO: Update placeholder value.
+      };
+
+      var valueRangeBody = {
+        // TODO: Add desired properties to the request body.
+        majorDimension: "ROWS",
+        values:speetValueTable
+      };
+
+      var request = gapi.client.sheets.spreadsheets.values.append(params, valueRangeBody);
+      request.then(function(response) {
+        // TODO: Change code below to process the `response` object:
+        console.log(response.result);
+      }, function(reason) {
+        console.error('error: ' + reason.result.error.message);
+      });
+    }
