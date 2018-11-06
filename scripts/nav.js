@@ -43,7 +43,7 @@ $(document).ready(function() {
 
 function initialNavBar() {
   document.getElementById("navBar").innerHTML =
-    "<nav class='navbar navbar-expand-lg navbar-light bg-light flex-md-nowrap p-0 shadow'>" +
+    "<nav class='navbar navbar-fixed-top navbar-expand-lg navbar-light bg-light flex-md-nowrap p-0 shadow'>" +
     "<a class='navbar-brand' href='data.html'>" +
     " <img src='image/ICON.png' width='30' height='30' class='d-inline-block align-top' alt=''>" +
     " Timetec Inc</a>" +
