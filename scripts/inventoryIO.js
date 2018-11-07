@@ -29,7 +29,114 @@ var aphabetArray = [
   "S",
   "T"
 ];
-function getInformation() {
+function getIOsheetValue() {
+  infoTable = [];
+  var params = {
+    spreadsheetId: "1DF_16W8WoNKrfOzFGq7TRnV6I_0uTsi94tMQ2iPGeWI",
+    range: "Main!A2:D",
+    valueRenderOption: "UNFORMATTED_VALUE", // TODO: Update placeholder value.
+
+    // How dates, times, and durations should be represented in the output.
+    // This is ignored if value_render_option is
+    // FORMATTED_VALUE.
+    // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+    dateTimeRenderOption: "FORMATTED_STRING",
+    majorDimension: "COLUMNS"
+  };
+  var request = gapi.client.sheets.spreadsheets.values.get(params);
+  request.then(
+    function(response) {
+      // TODO: Change code below to process the `response` object:
+      console.log(response.result);
+      var IDInfo = response.result.values[0];
+      var QTYInfo = response.result.values[1];
+      var customerInfo = response.result.values[2];
+      var orderInfo = response.result.values[3];
+
+      var IDLines = response.result.values[0];
+      var QTYLines = response.result.values[1];
+      var customerLines = response.result.values[2];
+      var orderLines = response.result.values[3];
+      //check if all data number match
+      console.log(IDLines);
+      console.log(QTYLines);
+      console.log(customerLines);
+      console.log(orderLines);
+      if (IDLines.length != QTYLines.length) {
+        console.log("length not equal");
+        document.getElementById("txtHint").innerHTML =
+          "ID number and QTY number not match please check";
+        return;
+      } else if (IDLines.length != customerLines.length) {
+        console.log("length not equal");
+        document.getElementById("txtHint").innerHTML =
+          "ID number and customer number not match please check";
+      } else if (IDLines.length != orderLines.length) {
+        console.log("length not equal");
+        document.getElementById("txtHint").innerHTML =
+          "ID number and Order number not match please check";
+      } else {
+        document.getElementById("txtHint").innerHTML = "All data lines matched";
+      }
+      //intial the data table
+      for (var i = 0; i < IDLines.length; i++) {
+        if (IDLines[i].includes("NP")) {
+          infoTable[IDLines[i]] = {
+            startLine: 0,
+            lineNumber: 0,
+            inputData: [],
+            orderID: [],
+            buyer: []
+          };
+        } else {
+          var temp = IDLines[i].replace("S", "");
+          infoTable[temp] = {
+            startLine: 0,
+            lineNumber: 0,
+            inputData: [],
+            orderID: [],
+            buyer: []
+          };
+        }
+      }
+      //push data to table
+      for (var i = 0; i < IDLines.length; i++) {
+        if (IDLines[i].includes("NP")) {
+          infoTable[IDLines[i]].inputData.push(QTYLines[i]);
+          infoTable[IDLines[i]].orderID.push(orderLines[i]);
+          infoTable[IDLines[i]].buyer.push(customerLines[i]);
+        } else {
+          var temp = IDLines[i].replace("S", "");
+          infoTable[temp].inputData.push(QTYLines[i]);
+          infoTable[temp].orderID.push(orderLines[i]);
+          infoTable[temp].buyer.push(customerLines[i]);
+        }
+
+        //
+      }
+      for (var id in infoTable) {
+        if (id.includes("NP")) {
+          totalNPNumer++;
+        } else {
+          totalSVNumber++;
+        }
+      }
+
+      for (var id in infoTable) {
+        //getLineNumber(id,totalNPNumer);
+        if (id.includes("NP")) {
+          getColNumber(pcSheetID, id);
+        } else {
+          getColNumber(svSheetID, id);
+        }
+      }
+    },
+    function(reason) {
+      console.error("error: " + reason.result.error.message);
+    }
+  );
+}
+/*function getInformation() {
   totalNPNumer = 0;
   totalSVNumber = 0;
   processedNP = 0;
@@ -114,7 +221,7 @@ function getInformation() {
       getColNumber(svSheetID, id);
     }
   }
-}
+}*/
 
 function handleClientLoad() {
   var config = firebase.database().ref("config");
@@ -281,7 +388,6 @@ function getLineNumber(sheetID, ID, FBAColNum, customerCol, orderCol) {
           valueArray.push([]);
           valueArray.push([]);
           valueArray.push([]);
-          valueArray.push([]);
         } else if (document.getElementById("RINRadio").checked == true) {
           //If it is RIN section-------------
           //jump to RIN colum
@@ -291,7 +397,6 @@ function getLineNumber(sheetID, ID, FBAColNum, customerCol, orderCol) {
             tempRINArray.push(infoTable[ID].inputData[d]);
           }
           valueArray.push(tempRINArray);
-          valueArray.push([]);
           valueArray.push([]);
           valueArray.push([]);
           valueArray.push([]);
