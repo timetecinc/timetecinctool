@@ -30,6 +30,7 @@ var aphabetArray = [
   "T"
 ];
 function getIOsheetValue() {
+  document.getElementById("loader").style.visibility = "visible";
   infoTable = [];
   var params = {
     spreadsheetId: "1DF_16W8WoNKrfOzFGq7TRnV6I_0uTsi94tMQ2iPGeWI",
@@ -501,6 +502,7 @@ function sendToSheet(sheetID, data) {
 }
 
 function appendPre(message) {
+  document.getElementById("loader").style.visibility = "hidden";
   var pre = document.getElementById("content");
   var textContent = document.createTextNode(message + "\n");
   pre.appendChild(textContent);

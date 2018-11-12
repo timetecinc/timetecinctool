@@ -137,12 +137,11 @@ function getInfo() {
           card = "";
         }
 
-
         Type = getType(singleSKU, dataBase);
         if (kitNum >= 2) {
           reviewCard = "Review";
-          if(Type.includes("D4")){
-          	reviewCard = "$5 Rebate Card";
+          if (Type.includes("D4")) {
+            reviewCard = "$5 Rebate Card";
           }
         } else {
           reviewCard = "";
@@ -589,6 +588,7 @@ function getLocalServerInv() {
 var newSheetID;
 
 function creatNewSheet(spreadSheetID) {
+  document.getElementById("loader").style.visibility = "visible";
   var params = {
     // The spreadsheet to apply the updates to.
     spreadsheetId: spreadSheetID // TODO: Update placeholder value.
@@ -754,6 +754,7 @@ function sendFormat(spreadSheetID) {
 }
 
 function appendPre(message) {
+  document.getElementById("loader").style.visibility = "hidden";
   var pre = document.getElementById("content");
   var textContent = document.createTextNode(message + "\n");
   pre.appendChild(textContent);
