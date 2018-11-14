@@ -77,6 +77,11 @@ function initialNavBar() {
     "'>" +
     "<a class='nav-link' href='inventoryIO.html'>Inventory Recording</a>" +
     "</li>" +
+    "<li id='listingPage'class='" +
+    invIOPageSelec +
+    "'>" +
+    "<a class='nav-link' href='inventoryReports.html'>Inventory Report</a>" +
+    "</li>" +
     " <li class='nav-item dropdown'>" +
     "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownMenuLink' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'  >FBA</a>" +
     "<div class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>" +
