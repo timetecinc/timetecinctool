@@ -103,7 +103,7 @@ array_push($stack,$requestID);
 $request = new MarketplaceWebService_Model_GetReportRequestListRequest();
 $request->setMerchant(MERCHANT_ID);
 //$request->setReportRequestIdList($stack);
-//$request->setMWSAuthToken('amzn.mws.7cb3ae52-b407-31a3-4499-482ff57d7ad8'); // Optional
+//$request->setMWSAuthToken('<MWS Auth Token>'); // Optional
 // 
 invokeGetReportRequestList($service, $request,$requestID);
 
@@ -162,7 +162,7 @@ invokeGetReportRequestList($service, $request,$requestID);
                           if ($reportRequestInfo->isSetReportType()) 
                           {
                               
-                             if( $reportRequestInfo->getReportType() == '_GET_FBA_MYI_UNSUPPRESSED_INVENTORY_DATA_'){
+                             if( $reportRequestInfo->getReportType() == '_GET_FLAT_FILE_ALL_ORDERS_DATA_BY_ORDER_DATE_'){
                               //echo nl2br('nowTime' . $nowTime);
                              // echo nl2br('endDate' . $reportRequestInfo->getEndDate());
                              

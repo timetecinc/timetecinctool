@@ -1,0 +1,14 @@
+{
+    "name": "ray/timetecinc",
+    "description": "Access firebase with php",
+    "type": "project",
+    "license": "GNU3",
+    "authors": [
+        {
+            "name": "Ruigang Gu",
+            "email": "guruigangbt@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

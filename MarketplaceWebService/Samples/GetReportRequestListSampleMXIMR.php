@@ -101,9 +101,9 @@ $stack = array();
 array_push($stack,$requestID);
 
 $request = new MarketplaceWebService_Model_GetReportRequestListRequest();
-$request->setMerchant(MERCHANT_ID);
+$request->setMerchant(MERCHANTMX_ID);
 //$request->setReportRequestIdList($stack);
-//$request->setMWSAuthToken('amzn.mws.7cb3ae52-b407-31a3-4499-482ff57d7ad8'); // Optional
+$request->setMWSAuthToken('amzn.mws.7cb3ae52-b407-31a3-4499-482ff57d7ad8'); // Optional
 // 
 invokeGetReportRequestList($service, $request,$requestID);
 

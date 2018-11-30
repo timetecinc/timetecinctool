@@ -16,7 +16,7 @@
       };
       firebase.initializeApp(config);
     </script>
-    <title>Inventory Reports</title>
+    <title>Sales Rate Report</title>
 
     <link
       rel="stylesheet"
@@ -24,7 +24,7 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="css/loader.css" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -52,20 +52,18 @@
       <div class="row">
         <div class="col-md-12">
           <div class="jumbotron">
-            <h1 class="display-4">Inventory Reports</h1>
-            <p class="lead">
-              This function collect US, CA, MX and EU Inventory Reports and
-              combine them together.
-            </p>
+            <h1 class="display-4">Sales Rate Report</h1>
+            <p class="lead">Predict sales.</p>
 
             <hr class="my-4" />
             <br />
             <br />
-            <div id="USButton"></div>
-            <div id="CAButton"></div>
-            <div id="MXButton"></div>
-            <div id="sendButton"></div>
+            <div id="USCAButton"></div>
 
+            <div id="MXButton"></div>
+            <br />
+            <br />
+            <div id="loader" style="visibility: hidden"></div>
             <a id="txtHint"></a> <br />
             <pre id="content"></pre>
           </div>
@@ -91,16 +89,7 @@
           ></table>
         </div>
       </div>
-      <div class="col">
-        <div class="table-responsive">
-          <table
-            id="myMXTable"
-            class="table table-sm table-bordred table-hover"
-          ></table>
-        </div>
-      </div>
     </div>
-
     <div class="table-responsive" style="margin-right: 10px; margin-left:10px">
       <table
         id="myALLTable"
@@ -110,12 +99,5 @@
     <br /><br />
 
     <br />
-    <script
-      async
-      defer
-      src="https://apis.google.com/js/api.js"
-      onload="this.onload=function(){};handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()"
-    ></script>
   </body>
 </html>

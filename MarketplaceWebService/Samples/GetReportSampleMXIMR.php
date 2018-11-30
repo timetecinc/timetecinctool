@@ -51,9 +51,11 @@ date_default_timezone_set('America/Los_Angeles');
 // China
 //$serviceUrl = "https://mws.amazonservices.com.cn";
 // Canada
-$serviceUrl = "https://mws.amazonservices.ca";
+//$serviceUrl = "https://mws.amazonservices.ca";
 // India
 //$serviceUrl = "https://mws.amazonservices.in";
+//Mexico
+$serviceUrl = "https://mws.amazonservices.com.mx";
 
 $config = array (
   'ServiceURL' => $serviceUrl,
@@ -106,10 +108,10 @@ echo("current dir ".__DIR__."\n");
  $request = new MarketplaceWebService_Model_GetReportRequest($parameters);
 */
 $request = new MarketplaceWebService_Model_GetReportRequest();
-$request->setMerchant(MERCHANT_ID);
+$request->setMerchant(MERCHANTMX_ID);
 $request->setReport(@fopen('php://memory', 'rw+'));
 $request->setReportId($reportId);
-//$request->setMWSAuthToken('<MWS Auth Token>'); // Optional
+$request->setMWSAuthToken('amzn.mws.7cb3ae52-b407-31a3-4499-482ff57d7ad8'); // Optional
 
 invokeGetReport($service, $request);
 
